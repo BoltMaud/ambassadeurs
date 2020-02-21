@@ -7,3 +7,6 @@
     https://data.iledefrance.fr/explore/dataset/entites-constituant-les-domaines-dinteret-majeur-labellises/information/
     où j'ai croisé avec le numéro national de structure
     
+- filtres automatiques en fonction des colonnes
+
+- colonnes obligatoires : lat lng id 

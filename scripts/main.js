@@ -5,8 +5,12 @@
 
 // d3 coordonnées de la France
 var geoJsonFrance;
-var villes=new Villes();
+listOfColumnNames=[];
+var mydata;
 
+$(document).ready(function() {
+    $('select').material_select();
+});
 //----------------------------------------------------------
 // C'est ici que tout le code commence !
 //----------------------------------------------------------
@@ -15,24 +19,21 @@ var villes=new Villes();
  * Récupération des données des différents fichiers en entrée.
  * Puis début de l'éxécution du script.
  */
+ var psv = d3.dsvFormat(";");
 var dataPromise = d3.queue()
-    .defer(d3.csv, "ressources/data/labos_data.csv")
+    .defer(d3.tsv, "ressources/data/labs.tsv")
     .defer(d3.json, "ressources/data/departements-ile-de-france.geojson")
     .defer(d3.json,"ressources/data/coordVilles.json")
-    .defer(d3.json, "ressources/data/coordVilles.json")
-    .await(function(error, data, ileDeFrance, villesJson, labos) {
+    .await(function(error, data, ileDeFrance, villesJson) {
         if (error) {
             console.error('Oh dear, something went wrong: ' + error);
         }
         else {
             geoJsonFrance = ileDeFrance;
 
-            let p1 = new Promise(function(resolve, reject) {
-            console.log(villesJson)
-                creationVilles(villesJson); });
-            p1.then(traitementDonnees(data));
 
             let p2 = new Promise(function(resolve, reject) {
+                traitementDonnees(data);
                 creationCarte(); });
             p2.then(affichageCarte());
         }
@@ -45,28 +46,21 @@ var dataPromise = d3.queue()
 //-----------------------------------------------------------------------------------
 
 /**
- * Instanciation des villes à partir du fichier villes.csv
- */
-function creationVilles(villesJson) {
-    var tmpVille;
-    villesJson.forEach(function (d) {
-        tmpVille = new Ville(d.name, d.pos);
-        villes.addVille(tmpVille);
-    });
-}
-
-/**
  * Instanciation des trajets fournis par les fichiers voitures.csv, tgv.csv et avion.csv
  */
 function traitementDonnees(data) {
-    // Instanciation des trajets en voiture, et ajout de ceux ci à leurs villes de depart et d'arrivee.
-    var tmpTrajetVoiture;
-    /*voitures.forEach(function (c) {
-        tmpTrajetVoiture = new Labo(c.depart, c.arrivee, c.temps, c.prix, c.CO2);
-        villes.getVille(c.depart.toUpperCase()).addVilleAdjVoiture(tmpTrajetVoiture);
-        villes.getVille(c.arrivee.toUpperCase()).addVilleAdjVoiture(tmpTrajetVoiture);
-        trajets.addTrajet(tmpTrajetVoiture);
-    });*/
-
+    mydata=data;
+    listOfColumnNames= data.columns;
+    console.log(listOfColumnNames)
+    for (name  in listOfColumnNames) {
+        ajoutNomDansSelect(listOfColumnNames[name])
+    }
+}
+function ajoutNomDansSelect(name){
+    var node = document.createElement("option");
+    var textnode = document.createTextNode(name);
+    node.appendChild(textnode);
+    document.getElementById("filterOnAttributes").appendChild(node);
+    $('select').material_select();
 }
 

@@ -1,8 +1,8 @@
 import re
 import json
 
-final=open("labs.csv","a")
-final.write("numero_national_de_structure;"+"libelle;"+"lat;"+"long;"+"domaines;"+"adresse;"+"code_postal;"+"ville;"+"site_web\n")
+final=open("labs.tsv","a")
+final.write("numero_national_de_structure\t"+"libelle\t"+"lat\t"+"long\t"+"domaines\t"+"adresse\t"+"code_postal\t"+"ville\t"+"site_web\n")
 with open('labos_data.json', 'r') as f:
     file = json.load(f)
 i=0
@@ -29,7 +29,7 @@ for line in file:
                         code_postal=line2["properties"]["code_postal"]
                         ville=line2["properties"]["ville"]
                         site_web=line['fields']["site_web"] if "site_web" in line['fields'] else ""
-                        final.write(numero+";"+libelle+";"+str(long)+";"+str(lat)+";"+domaines+";"+adresse+";"+str(code_postal)+";"+ville+";"+site_web+"\n")
+                        final.write(numero+"\t"+libelle+"\t"+str(long)+"\t"+str(lat)+"\t"+domaines+"\t"+adresse+"\t"+str(code_postal)+"\t"+ville+"\t"+site_web+"\n")
 
 
 

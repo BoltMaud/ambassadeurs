@@ -12,22 +12,52 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <body>
 <div id="game">
+
   <div class="row">
   <!-- Dropdown Structure -->
-  <nav>
-    <div class="nav-wrapper white">
-        <span class="black">Ma carte d'Ile de France</span>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper indigo">
+        <div id="createfilter" class="col s9 ">
+          <div class="col s4 " >
+            <div class="input-field" style="padding-top: 10px;">
+              <select id="filterOnAttributes">
+                <option value="" disabled selected><spam  id="titleFilter">Create a filter on ...</spam></option>
+              </select>
+            </div>
+          </div>
+          <div class="col s4" id="filterIs">
+
+          </div>
+          <div class="col s1" id="addFilter">
+            <a class="btn waves-effect waves-light">OK</a>
+          </div>
+
+        </div>
+
+          <div id="title" class=" right indigo-text text-lighten-5 col s3"><tab>Map of public Labs</div>
+
+        </div>
+      </nav>
     </div>
-  </nav>
+  </div>
+  <div class="row">
+    <div id="filters" class="col s9 indigo">
+
+    </div>
+  </div>
+  <div class="row">
+      <div id="results"  class="col s6">
+
+      </div>
+
+      <div id="carte" class="col s6"></div>
   </div>
 
 
-
-      <div id="carte" class="col s5"></div>
-
-
-
 </div>
+
+
 
 
 
@@ -36,9 +66,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
 <!-- Notre code -->
-<script language="javascript" type="text/javascript" src="./scripts/model/villes.js"></script>
 
 <script language="javascript" type="text/javascript" src="./scripts/main.js"></script>
+<script language="javascript" type="text/javascript" src="./scripts/filters.js"></script>
+
 <script language="javascript" type="text/javascript" src="./scripts/france.js"></script>
 
 </body>
