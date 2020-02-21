@@ -19,12 +19,11 @@ $(document).ready(function() {
  * Récupération des données des différents fichiers en entrée.
  * Puis début de l'éxécution du script.
  */
- var psv = d3.dsvFormat(";");
+
 var dataPromise = d3.queue()
     .defer(d3.tsv, "ressources/data/labs.tsv")
     .defer(d3.json, "ressources/data/departements-ile-de-france.geojson")
-    .defer(d3.json,"ressources/data/coordVilles.json")
-    .await(function(error, data, ileDeFrance, villesJson) {
+    .await(function(error, data, ileDeFrance) {
         if (error) {
             console.error('Oh dear, something went wrong: ' + error);
         }
@@ -53,8 +52,11 @@ function traitementDonnees(data) {
     listOfColumnNames= data.columns;
     console.log(listOfColumnNames)
     for (name  in listOfColumnNames) {
-        ajoutNomDansSelect(listOfColumnNames[name])
+        if (listOfColumnNames[name] != "lat" && listOfColumnNames[name]!="lng"){
+            ajoutNomDansSelect(listOfColumnNames[name])
+        }
     }
+    createAllBoxes(mydata);
 }
 function ajoutNomDansSelect(name){
     var node = document.createElement("option");

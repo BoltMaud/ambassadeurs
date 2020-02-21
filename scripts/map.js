@@ -14,6 +14,7 @@ var svgFrance = d3.select( "#carte" )
 	.attr( "height", hauteur );
 var g = svgFrance.append("g");
 var pointsd3 ;
+var previousSelectedPoint;
 
 
 //----------------------------------------------------------------
@@ -33,10 +34,8 @@ var tooltipVille = svgFrance.append("rect")
     .attr("height",50);
 
 
-
-
 //----------------------------------------------------------------
-// crée le polygone de la France
+// crée le polygone de l'ile de france
 function zoomed() {
     g.selectAll('path') // To prevent stroke width from scaling
     .attr('transform', d3.event.transform);
@@ -61,37 +60,24 @@ function creationCarte(){
     pointsd3 = svgFrance.selectAll(".points")
       .data(mydata)
       .enter();
-      
-  // labels des villes 
-  // id html : nom de la ville sans espace en petit caractère 
-  // classes html : nom de la ville sans espace (classe commune label + rond) + "villes" 
- /*   pointsd3
-      .append("text")
-      .attr("class", "points")
-      .attr("id",function(d){return d.nom.replace(/\s/g, '').toUpperCase();})
-      .attr("class",function(d){  return d.nom.replace(/\s/g, '');})
-      .text(function(d){return d.nom;})
-      .attr("font-size", "11px")
-      .attr("fill", "#585858")
-      .attr("x",function(d){return projection(d.pos)[0]-15;})
-      .attr("y",function(d){ if(d.nom =="LYON"){
-                                return projection(d.pos)[1]-15;
-                            }
-                            else{
-                                  return projection(d.pos)[1]-5;}
-      });*/
 
-  // rond représentant les villes 
-  // classe html : nom de la ville sans espace (classe commune label + rond) 
+  // rond représentant les points
     pointsd3
       .append("circle")
       .attr("r", 3)
       .attr("id",function(d){return "rond"+d.id.replace(/\s/g, '');})
       .attr("fill", "#585858")
       .attr("cx",function(d){return projection([parseFloat(d.lat),parseFloat(d.lng)])[0];})
-      .attr("cy",function(d){return projection([parseFloat(d.lat),parseFloat(d.lng)])[1];});
+      .attr("cy",function(d){return projection([parseFloat(d.lat),parseFloat(d.lng)])[1];})
+      .on("click", function(d) {
+          if (previousSelectedPoint){
+            d3.select(previousSelectedPoint).style('fill', '#585858');
+          }
+          previousSelectedPoint=this;
+          d3.select(this).style('fill', 'red');
+          displayFirst(d);
+      });
 }
-
 //----------------------------------------------------------------
 // affiche la carte
 //----------------------------------------------------------------
@@ -105,17 +91,6 @@ function affichageCarte() {
 	   .attr("vector-effect", "non-scaling-stroke")
         .style("stroke", "white");
   g.selectAll(".france")
-		 .attr( "fill", "#cfd8dc" )
+		 .attr( "fill", "#eeeeee" )
 	     .attr("d", path);
-}
-
-
-function colorieDepartArrive(){
-  d3.select("#"+depart.replace(/\s/g, ''))
-    .attr("font-weight","bold")
-    .attr("fill","black");
-  d3.select("#"+arrivee.replace(/\s/g, ''))
-    .attr("font-size", "13px")
-    .attr("font-weight","bold")
-    .attr("fill","green");
 }

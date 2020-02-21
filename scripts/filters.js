@@ -147,3 +147,11 @@ function addInput(selectedColumnInFilter){
     document.getElementById("filterRange1").appendChild(node);
     document.getElementById("filterRange1").appendChild(label);
 }
+//----------------------------------------------------------------
+
+function addFilter(){
+    var node = document.createElement("div");
+    node.classList.add("chip");
+    node.innerHTML=document.getElementById("filterOnAttributes").value+'<i class="close material-icons">close</i>';
+    document.getElementById("filters").appendChild(node);
+}

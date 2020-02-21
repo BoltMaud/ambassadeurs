@@ -1,4 +1,4 @@
-id	libelle	lat	lng	domaines:list	adresse	code_postal	ville	site_web
+numero	id	lat	lng	domaines:list	adresse	code_postal	ville	site_web
 200111674P	Laboratoire de mathematiques de Versailles	2.149538	48.810476	Mathematiques et leurs interactions	45 Av des Etats-Unis, 78035 Versailles	78000.0	VERSAILLES	http://lmv.math.cnrs.fr/
 199712653W	Fluides, Automatique et Systemes Thermiques	2.1763149999999998	48.706458	Physique;Sciences pour l'ingenieur	Rue du Belvédère Campus Universitaire d'Orsay, 91405 Orsay	91400.0	ORSAY	http://www.fast.u-psud.fr/
 199812937A	Institut Galien Paris Sud	2.271552	48.762875		5 Rue Jean Baptiste Clément, 92296 Châtenay-malabry	92290.0	CHATENAY-MALABRY	http://www.umr-cnrs8612.u-psud.fr/
