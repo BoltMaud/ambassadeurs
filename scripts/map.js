@@ -1,7 +1,7 @@
 //----------------------------------------------------------------
-// Auteur : Mathilde 
-// Date : Decembre 2017 
-// fichier contenant tous les élements pour l'affichage de la carte
+// Author : Mathilde
+// Date : Fev 2020
+// file that creates the D3JS map
 //----------------------------------------------------------------
 
 //----------------------------------------------------------------
@@ -43,19 +43,17 @@ function zoomed() {
     pointsd3.selectAll('circle')
           .attr("cx",function(d){return (projection([parseFloat(d.lat),parseFloat(d.lng)])[0]*currentZoom.k)+currentZoom.x;})
           .attr("cy",function(d){return (projection([parseFloat(d.lat),parseFloat(d.lng)])[1]*currentZoom.k)+currentZoom.y;});
-
-
 }
 const zoom = d3.zoom()
-      .scaleExtent([1, 8])
+      .scaleExtent([1, 12])
       .on('zoom', zoomed);
 svgFrance.call(zoom);
+
 //----------------------------------------------------------------
-// Crée la carte avec les noms des villes et les routes
-//---------------------------------------------------------------- 
-
-function creationCarte(){
-
+/*
+ * Create points of interets depending on the csv
+**/
+function createCircles(){
   // création des points 
     pointsd3 = svgFrance.selectAll(".points")
       .data(mydata)
@@ -78,24 +76,26 @@ function creationCarte(){
           displayFirst(d);
       });
 }
-
+//----------------------------------------------------------------
+/*
+ * To update the interesting points
+**/
 function removeAllInMap(){
-        pointsd3
-         .selectAll('circle')
-         .attr("display","none");
+    $('circle')
+     .attr("display","none");
 }
-
-function displayOnMap(id){
-console.log("hhhh",pointsd3
-                        .select("#rond"+id.replace(/[^\w\d]/gi, '')));
-    pointsd3
-     .select("#rond"+id.replace(/[^\w\d]/gi, ''))
+//----------------------------------------------------------------
+/*
+ * Display only the interesting points
+**/
+function displayOnMap(i){
+     $("#rond"+i["id"].replace(/[^\w\d]/gi, ''))
      .attr("display","inline");
 }
 //----------------------------------------------------------------
 // affiche la carte
 //----------------------------------------------------------------
-function affichageCarte() {
+function displayileDeFrance() {
 	g.selectAll("path")
 	   .data(geoJsonFrance.features)
 	   .enter()
@@ -104,7 +104,7 @@ function affichageCarte() {
 	   .style("stroke-width","2px")
 	   .attr("vector-effect", "non-scaling-stroke")
         .style("stroke", "white");
-  g.selectAll(".france")
+    g.selectAll(".france")
 		 .attr( "fill", "#eeeeee" )
 	     .attr("d", path);
 }

@@ -1,6 +1,7 @@
 //----------------------------------------------------------------
-// Auteurs : Mathilde, Arthur
+// Auteurs : Mathilde
 // Date : Fev 2020
+// file that creates the html boxes on the left
 //----------------------------------------------------------------
 
 
@@ -8,18 +9,13 @@
  * box of d should be first because d has been selected
  */
 function displayFirst(d){
+    
 }
 
 //----------------------------------------------------------------
 /**
- *
+ * create the html boxe of the item
  */
-function createAllBoxes(dataToDisplay){
-    for (i in dataToDisplay){
-        displayBox(dataToDisplay[i]);
-    }
-}
-
 function displayBox(item){
     var node = document.createElement("div");
     node.classList.add("col");
@@ -57,15 +53,3 @@ function displayBox(item){
     document.getElementById(item["id"]+"boxContent2").appendChild(node);
 }
 
-//----------------------------------------------------------------
-function updatesBoxesDueToFilter(filter){
-    document.getElementById("results").innerHTML="";
-    for (i in mydata){
-        if (filterAcceptThisItem(mydata[i])){
-            displayBox(mydata[i]);
-            console.log(mydata[i]["id"]);
-            displayOnMap(mydata[i]["id"]);
-        }
-    }
-
-}

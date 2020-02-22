@@ -1,5 +1,5 @@
 //----------------------------------------------------------------
-// Authors : Mathilde, Arthur
+// Authors : Mathilde
 // Date : Fev 2020
 // file for filter inputs
 //----------------------------------------------------------------
@@ -16,7 +16,6 @@ class Filter{
         this.elements =  elements; // min, max OR string OR checked
     }
 }
-
 //----------------------------------------------------------------
 /**
  * we save the list of created filter
@@ -38,14 +37,17 @@ $("#filterOnAttributes").on('change', function() {
 
     // checkbox or range
     var listOfValues=[]
-    // get unique numbers in this column
+    // get unique numbers in this column to know how many there are
+    // this will determine checkboxes or range
     let p1 = new Promise(function(resolve, reject) {
         for(val in mydata){
+            // for each unique val, we add it in listOfValues
             if(listOfValues.indexOf(mydata[val][selectedColumnInFilter])<0){
                 listOfValues.push(mydata[val][selectedColumnInFilter]);
             }
         }
     });
+    // then we can create the html filter form
     p1.then(addComponentToFilter(selectedColumnInFilter,listOfValues));
 
 });
@@ -57,7 +59,7 @@ function addComponentToFilter(selectedColumnInFilter,listOfValues){
         document.getElementById("addFilter").style.display="inline";
         // if the string does not contain letter :
         if (mydata[0][selectedColumnInFilter].search(/[a-z]/i)&& mydata[1][selectedColumnInFilter].search(/[a-z]/i)){
-            // if at most 6, then checkbox, otherwise range
+            // if at most 33, then checkbox, otherwise range
             if (listOfValues.length>34){
                 addRange(selectedColumnInFilter);
             }
@@ -67,6 +69,7 @@ function addComponentToFilter(selectedColumnInFilter,listOfValues){
         }
         // the column contains letter, checkbox only
         else{
+            // if there are to many options like adresses, then INPUT otherwise CHECKBOXES
             if (listOfValues.length>20){
                 addInput(selectedColumnInFilter);
             }
@@ -78,6 +81,7 @@ function addComponentToFilter(selectedColumnInFilter,listOfValues){
 //----------------------------------------------------------------
 /**
  * Add a selector with checkbox as filter
+ * This function is mainly a html addition
 */
 function addSelectorWithCheckbox(selectedColumnInFilter,listOfValues){
     currentTypeOfFitler="checkbox";
@@ -102,6 +106,7 @@ function finishSelector(node){
 //----------------------------------------------------------------
 /**
  * Add a range as filter
+ * This function is mainly a html addition
 */
 function addRange(selectedColumnInFilter,listOfValues){
     currentTypeOfFitler="range";
@@ -147,6 +152,7 @@ function addRange(selectedColumnInFilter,listOfValues){
 //----------------------------------------------------------------
 /**
  * Add a input as filter
+ * This function is mainly a html addition
 */
 function addInput(selectedColumnInFilter){
     currentTypeOfFitler="input";
@@ -173,8 +179,8 @@ function addInput(selectedColumnInFilter){
 }
 //----------------------------------------------------------------
 /**
- * this function does not take care of the list of filter,
- * see addFilterInDict
+ * When click on add, we add a chip html
+ * We also add the filter in the dict of filters, addFilterInDict
  */
 function addFilter(){
     var node = document.createElement("div");
@@ -187,16 +193,22 @@ function addFilter(){
 }
 
 //----------------------------------------------------------------
+/**
+ * ApplyFilter() runs after addFilterInDict(). At this point, we can update the boxes and the map
+ * We also clear the div of filter and remove the column in the select
+ */
 function applyFilter(){
     document.getElementById("addFilter").style.display="none";
     document.getElementById("filterIs").innerHTML="";
     $('#filterOnAttributes option:selected').remove();
     $('select').material_select();
-    removeAllInMap();
-    updatesBoxesDueToFilter();
+    updatesBoxesAndMapDueToFilter();
 }
 
 //----------------------------------------------------------------
+/**
+ * This function adds the new filter in the dict
+ */
 function addFilterInDict(){
     columnName=document.getElementById("filterOnAttributes").value;
     elements=[];
@@ -219,13 +231,20 @@ function addFilterInDict(){
 }
 
 //----------------------------------------------------------------
+/**
+ * This function removes the new filter in the dict
+ * It also calls the function to update the boxes and map
+ */
 function removeFilterInDict(columnName){
     delete dictOfFilters[columnName];
-    ajoutNomDansSelect(columnName);
-    removeAllInMap();
-    updatesBoxesDueToFilter();
+    addNameInSelect(columnName);
+    updatesBoxesAndMapDueToFilter();
 }
 
+//----------------------------------------------------------------
+/**
+ * Boolean function that says if a item can be displayed
+ */
 function filterAcceptThisItem(item){
     for (filter in dictOfFilters){
         if (!(filter in item)){
