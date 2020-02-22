@@ -16,47 +16,56 @@ function displayFirst(d){
  */
 function createAllBoxes(dataToDisplay){
     for (i in dataToDisplay){
-        var node = document.createElement("div");
-        node.classList.add("col");
-        node.classList.add("card");
-        node.classList.add("grey");
-        node.classList.add("lighten-3");
-        node.classList.add("s10");
-        node.classList.add("offset-s1");
-        node.id=dataToDisplay[i]["id"]+"box";
-        document.getElementById("results").appendChild(node);
-
-        var node = document.createElement("div");
-        node.classList.add("card-content");
-        node.classList.add("black-text");
-        node.id=dataToDisplay[i]["id"]+"boxContent1";
-        document.getElementById(dataToDisplay[i]["id"]+"box").appendChild(node);
-        var node = document.createElement("div");
-        node.classList.add("card-action");
-        node.classList.add("black-text");
-        node.id=dataToDisplay[i]["id"]+"boxContent2";
-        document.getElementById(dataToDisplay[i]["id"]+"box").appendChild(node);
-
-        var node = document.createElement("span");
-        node.classList.add("card-title");
-        node.innerHTML=dataToDisplay[i]["id"];
-        document.getElementById(dataToDisplay[i]["id"]+"boxContent1").appendChild(node);
-
-        var node = document.createElement("p");
-        for (j in dataToDisplay[i]){
-            if (j!="id" && j!="lat" && j!="lng"){
-              node.innerHTML+=j+" : "+  dataToDisplay[i][j]+"<br>";
-            }
-        }
-        document.getElementById(dataToDisplay[i]["id"]+"boxContent2").appendChild(node);
-
+        displayBox(dataToDisplay[i]);
     }
 }
 
+function displayBox(item){
+    var node = document.createElement("div");
+    node.classList.add("col");
+    node.classList.add("card");
+    node.classList.add("grey");
+    node.classList.add("lighten-3");
+    node.classList.add("s10");
+    node.classList.add("offset-s1");
+    node.id=item["id"]+"box";
+    document.getElementById("results").appendChild(node);
+
+    var node = document.createElement("div");
+    node.classList.add("card-content");
+    node.classList.add("black-text");
+    node.id=item["id"]+"boxContent1";
+    document.getElementById(item["id"]+"box").appendChild(node);
+
+    var node = document.createElement("div");
+    node.classList.add("card-action");
+    node.classList.add("black-text");
+    node.id=item["id"]+"boxContent2";
+    document.getElementById(item["id"]+"box").appendChild(node);
+
+    var node = document.createElement("span");
+    node.classList.add("card-title");
+    node.innerHTML=item["id"];
+    document.getElementById(item["id"]+"boxContent1").appendChild(node);
+
+    var node = document.createElement("p");
+    for (j in item){
+        if (j!="id" && j!="lat" && j!="lng"){
+          node.innerHTML+=j+" : "+  item[j]+"<br>";
+        }
+    }
+    document.getElementById(item["id"]+"boxContent2").appendChild(node);
+}
 
 //----------------------------------------------------------------
 function updatesBoxesDueToFilter(filter){
     document.getElementById("results").innerHTML="";
-
+    for (i in mydata){
+        if (filterAcceptThisItem(mydata[i])){
+            displayBox(mydata[i]);
+            console.log(mydata[i]["id"]);
+            displayOnMap(mydata[i]["id"]);
+        }
+    }
 
 }

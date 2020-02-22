@@ -65,7 +65,7 @@ function creationCarte(){
     pointsd3
       .append("circle")
       .attr("r", 4)
-      .attr("id",function(d){return "rond"+d.id.replace(/\s/g, '');})
+      .attr("id",function(d){return "rond"+d.id.replace(/[^\w\d]/gi, '');})
       .attr("fill", "#585858")
       .attr("cx",function(d){return projection([parseFloat(d.lat),parseFloat(d.lng)])[0];})
       .attr("cy",function(d){return projection([parseFloat(d.lat),parseFloat(d.lng)])[1];})
@@ -77,6 +77,20 @@ function creationCarte(){
           d3.select(this).style('fill', 'red');
           displayFirst(d);
       });
+}
+
+function removeAllInMap(){
+        pointsd3
+         .selectAll('circle')
+         .attr("display","none");
+}
+
+function displayOnMap(id){
+console.log("hhhh",pointsd3
+                        .select("#rond"+id.replace(/[^\w\d]/gi, '')));
+    pointsd3
+     .select("#rond"+id.replace(/[^\w\d]/gi, ''))
+     .attr("display","inline");
 }
 //----------------------------------------------------------------
 // affiche la carte

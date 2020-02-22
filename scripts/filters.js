@@ -58,7 +58,6 @@ function addComponentToFilter(selectedColumnInFilter,listOfValues){
         // if the string does not contain letter :
         if (mydata[0][selectedColumnInFilter].search(/[a-z]/i)&& mydata[1][selectedColumnInFilter].search(/[a-z]/i)){
             // if at most 6, then checkbox, otherwise range
-            console.log(listOfValues.length)
             if (listOfValues.length>34){
                 addRange(selectedColumnInFilter);
             }
@@ -184,15 +183,17 @@ function addFilter(){
     node.innerHTML=columnName+'<i class="close material-icons" onclick="removeFilterInDict(\''+columnName +'\')">close</i>';
     document.getElementById("filters").appendChild(node);
     let p1 = new Promise(function(resolve, reject) { addFilterInDict();});
-    p1.then(removeUsedColumnNameAfterFilter());
+    p1.then(applyFilter());
 }
 
 //----------------------------------------------------------------
-function removeUsedColumnNameAfterFilter(){
+function applyFilter(){
     document.getElementById("addFilter").style.display="none";
     document.getElementById("filterIs").innerHTML="";
     $('#filterOnAttributes option:selected').remove();
     $('select').material_select();
+    removeAllInMap();
+    updatesBoxesDueToFilter();
 }
 
 //----------------------------------------------------------------
@@ -221,11 +222,34 @@ function addFilterInDict(){
 function removeFilterInDict(columnName){
     delete dictOfFilters[columnName];
     ajoutNomDansSelect(columnName);
+    removeAllInMap();
+    updatesBoxesDueToFilter();
 }
 
-
 function filterAcceptThisItem(item){
-
+    for (filter in dictOfFilters){
+        if (!(filter in item)){
+            return false;
+        }
+        if (dictOfFilters[filter].type=="range"){
+            if (!(item[filter]>=dictOfFilters[filter].elements[0] && item[filter]<=dictOfFilters[filter].elements[1])){
+                return false;
+            }
+        }
+        else{
+            if (dictOfFilters[filter].type=="input"){
+                if (!item[filter].includes(dictOfFilters[filter].elements[0])){
+                   return false;
+                }
+            }
+            else{
+               if (!dictOfFilters[filter].elements.includes(item[filter])){
+                    return false;
+               }
+            }
+        }
+    }
+    return true
 }
 
 
