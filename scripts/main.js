@@ -21,7 +21,7 @@ $(document).ready(function() {
  */
 
 var dataPromise = d3.queue()
-    .defer(d3.tsv, "ressources/data/labs.tsv")
+    .defer(d3.tsv, "data.csv")
     .defer(d3.json, "ressources/data/departements-ile-de-france.geojson")
     .await(function(error, data, ileDeFrance) {
         if (error) {

@@ -64,7 +64,7 @@ function creationCarte(){
   // rond représentant les points
     pointsd3
       .append("circle")
-      .attr("r", 3)
+      .attr("r", 4)
       .attr("id",function(d){return "rond"+d.id.replace(/\s/g, '');})
       .attr("fill", "#585858")
       .attr("cx",function(d){return projection([parseFloat(d.lat),parseFloat(d.lng)])[0];})

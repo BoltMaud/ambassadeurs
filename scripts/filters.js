@@ -5,6 +5,28 @@
 //----------------------------------------------------------------
 
 /**
+ * A filter is a key, i.e., the name of the column in the csv file, a type in ["range","input","checkbox"] and
+ * an element which either contains the min max of the range, either contains the string that is searched, either
+ * the list of checked elements
+ */
+class Filter{
+    constructor (column, type, elements) {
+        this.column = column; // name of the column
+        this.type = type ; // type : range, contains, checked
+        this.elements =  elements; // min, max OR string OR checked
+    }
+}
+
+//----------------------------------------------------------------
+/**
+ * we save the list of created filter
+ */
+var dictOfFilters={};
+var currentTypeOfFitler;// in ["range","input","checkbox"]
+//----------------------------------------------------------------
+
+
+/**
  * When the first selector is selected : we want to display the filter of this attribute
  * Several choices are possibles : range, checkboxes, input
  * This depends on the data in the selected column
@@ -32,7 +54,7 @@ $("#filterOnAttributes").on('change', function() {
  * This function checks the type of the data to create the right type of filter
  */
 function addComponentToFilter(selectedColumnInFilter,listOfValues){
-        document.getElementById("addFilter").style.visibility="visible";
+        document.getElementById("addFilter").style.display="inline";
         // if the string does not contain letter :
         if (mydata[0][selectedColumnInFilter].search(/[a-z]/i)&& mydata[1][selectedColumnInFilter].search(/[a-z]/i)){
             // if at most 6, then checkbox, otherwise range
@@ -59,6 +81,7 @@ function addComponentToFilter(selectedColumnInFilter,listOfValues){
  * Add a selector with checkbox as filter
 */
 function addSelectorWithCheckbox(selectedColumnInFilter,listOfValues){
+    currentTypeOfFitler="checkbox";
     var node = document.createElement("div");
     node.class="input-field col s12";
     node.id="filterCheckBoxes";
@@ -82,6 +105,7 @@ function finishSelector(node){
  * Add a range as filter
 */
 function addRange(selectedColumnInFilter,listOfValues){
+    currentTypeOfFitler="range";
     var node = document.createElement("div");
     node.id="filterRange";
     document.getElementById("filterIs").appendChild(node);
@@ -126,6 +150,7 @@ function addRange(selectedColumnInFilter,listOfValues){
  * Add a input as filter
 */
 function addInput(selectedColumnInFilter){
+    currentTypeOfFitler="input";
     var node = document.createElement("div");
     node.id="filterInput";
     document.getElementById("filterIs").appendChild(node);
@@ -139,19 +164,69 @@ function addInput(selectedColumnInFilter){
 
     var node = document.createElement("input");
     var label = document.createElement("label");
-    node.id="minRange";
+    node.id="searchby";
     node.classList.add("validate");
     node.setAttribute("type","text");
     label.innerHTML="Search by ...";
-    label.htmlFor="minRange";
+    label.htmlFor="searchby";
     document.getElementById("filterRange1").appendChild(node);
     document.getElementById("filterRange1").appendChild(label);
 }
 //----------------------------------------------------------------
-
+/**
+ * this function does not take care of the list of filter,
+ * see addFilterInDict
+ */
 function addFilter(){
     var node = document.createElement("div");
     node.classList.add("chip");
-    node.innerHTML=document.getElementById("filterOnAttributes").value+'<i class="close material-icons">close</i>';
+    columnName=document.getElementById("filterOnAttributes").value;
+    node.innerHTML=columnName+'<i class="close material-icons" onclick="removeFilterInDict(\''+columnName +'\')">close</i>';
     document.getElementById("filters").appendChild(node);
+    let p1 = new Promise(function(resolve, reject) { addFilterInDict();});
+    p1.then(removeUsedColumnNameAfterFilter());
 }
+
+//----------------------------------------------------------------
+function removeUsedColumnNameAfterFilter(){
+    document.getElementById("addFilter").style.display="none";
+    document.getElementById("filterIs").innerHTML="";
+    $('#filterOnAttributes option:selected').remove();
+    $('select').material_select();
+}
+
+//----------------------------------------------------------------
+function addFilterInDict(){
+    columnName=document.getElementById("filterOnAttributes").value;
+    elements=[];
+    if (currentTypeOfFitler=="range"){
+        elements.push(document.getElementById("minRange").value);
+        elements.push(document.getElementById("minRange").value);
+    }
+    if (currentTypeOfFitler=="input"){
+        elements.push(document.getElementById("searchby").value);
+    }
+    if (currentTypeOfFitler=="checkbox"){
+        selected = $("#materializeSelectOfFilter option:selected");
+        for (i = 1; i < selected.length; i++){
+            elements.push(selected[i]["label"]);
+
+        }
+    }
+    dictOfFilters[columnName]=(new Filter(columnName,currentTypeOfFitler,elements));
+    return;
+}
+
+//----------------------------------------------------------------
+function removeFilterInDict(columnName){
+    delete dictOfFilters[columnName];
+    ajoutNomDansSelect(columnName);
+}
+
+
+function filterAcceptThisItem(item){
+
+}
+
+
+
