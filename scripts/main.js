@@ -23,7 +23,7 @@ $(document).ready(function() {
  */
 var dataPromise = d3.queue()
     .defer(d3.tsv, "data.csv")
-    .defer(d3.json, "ressources/data/departements-ile-de-france.geojson")
+    .defer(d3.json, "resources/data/departements-ile-de-france.geojson")
     .await(function(error, data, ileDeFrance) {
         if (error) {
             console.error('Oh dear, something went wrong: ' + error);
