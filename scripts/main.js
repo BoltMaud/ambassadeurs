@@ -11,11 +11,6 @@ listOfColumnNames=[];
 // data of the CSV
 var mydata;
 
-//create the materialize select of the html
-$(document).ready(function() {
-    $('select').material_select();
-});
-
 //----------------------------------------------------------
 /**
  * Récupération des données des différents fichiers en entrée.
@@ -48,14 +43,15 @@ var dataPromise = d3.queue()
  * Launches all the boxes of the data
  */
 function dataProcess(data) {
-    mydata=data;
-    listOfColumnNames= data.columns;
-    console.log(listOfColumnNames)
+    mydata = data;
+    let listOfColumnNames = data.columns;
+    console.log(listOfColumnNames);
     for (name  in listOfColumnNames) {
-        if (listOfColumnNames[name] != "lat" && listOfColumnNames[name]!="lng"){
-            addNameInSelect(listOfColumnNames[name])
+        if (listOfColumnNames[name] !== "lat" && listOfColumnNames[name]!=="lng"){
+            addNameInSelect(listOfColumnNames[name]);
         }
     }
+    $('select').formSelect();
 }
 
 //------------------------------------------------------------
@@ -65,11 +61,10 @@ function dataProcess(data) {
  * needed in dataProcess
  */
 function addNameInSelect(name){
-    var node = document.createElement("option");
-    var textnode = document.createTextNode(name);
-    node.appendChild(textnode);
+    let node = document.createElement("option");
+    let textNode = document.createTextNode(name);
+    node.appendChild(textNode);
     document.getElementById("filterOnAttributes").appendChild(node);
-    $('select').material_select();
 }
 
 //----------------------------------------------------------------

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Ma Carte d'Ile de France</title>
+  <link type="text/css" rel="stylesheet" href="resources/css/dataviz_style.css"  media="screen,projection"/>
+  <link rel="shortcut icon" href="resources/img/iledefrance.png">
+  <!--Materialize imports-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<div id="game">
+
+  <div class="row">
+  <!-- Dropdown Structure -->
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper indigo">
+        <div id="createfilter" class="col s9">
+          <div class="col s4">
+            <div class="input-field col s12" style="padding-top: 10px;">
+              <select id="filterOnAttributes">
+                <option value="" disabled selected id="titleFilter">Create a filter on ...</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col s4" id="filterIs">
+
+          </div>
+          <div class="col s1" id="addFilter">
+            <a class="btn waves-effect waves-light" onclick="addFilter()">OK</a>
+          </div>
+
+        </div>
+
+          <div id="title" class=" right indigo-text text-lighten-5 col s3"><tab>Map of public Labs</tab></div>
+
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div id="filters" class="col s6">
+
+    </div>
+  </div>
+  <div class="row">
+      <div id="results"  class="col s6">
+
+      </div>
+
+      <div id="carte" class="col s6"></div>
+  </div>
+</div>
+
+<!-- 3rd party Scripts-->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="materialize/js/materialize.js"></script>
+<script src="materialize/js/init.js"></script>
+
+<!-- Notre code -->
+<script src="scripts/main.js"></script>
+<script src="scripts/filters.js"></script>
+<script src="scripts/boxes.js"></script>
+<script src="scripts/map.js"></script>
+
+</body>
+</html>

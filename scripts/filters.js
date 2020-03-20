@@ -101,7 +101,7 @@ function addSelectorWithCheckbox(selectedColumnInFilter,listOfValues){
     p1.then(finishSelector(node));
 }
 function finishSelector(node){
-        $('select').material_select();
+        $('select').formSelect();
 }
 //----------------------------------------------------------------
 /**
@@ -201,7 +201,7 @@ function applyFilter(){
     document.getElementById("addFilter").style.display="none";
     document.getElementById("filterIs").innerHTML="";
     $('#filterOnAttributes option:selected').remove();
-    $('select').material_select();
+    $('select').formSelect();
     updatesBoxesAndMapDueToFilter();
 }
 
