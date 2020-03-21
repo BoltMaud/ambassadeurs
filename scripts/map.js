@@ -1,110 +1,78 @@
 //----------------------------------------------------------------
 // Author : Mathilde
 // Date : Fev 2020
-// file that creates the D3JS map
+// openstreetmap with leaflet
 //----------------------------------------------------------------
 
-//----------------------------------------------------------------
-// crée la div svg 
-var largeur = 700, hauteur = 600;
-var svgFrance = d3.select( "#carte" )
-	.append( "svg" )
-	.attr("id","cartesvg")
-	.attr( "width", largeur )
-	.attr( "height", hauteur );
-var g = svgFrance.append("g");
-var pointsd3 ;
-var previousSelectedPoint;
+var lat = 48.7;
+var lon = 2.4;
+var macarte = null;
+var markers = null;
 
+//----------------------------------------------------------
+/**
+ * Initialize the map with Leaflet
+ */
+function initMap() {
+    document.getElementById("carte").innerHTML="";
+    macarte = L.map('carte').setView([lat, lon], 8.5);
 
-//----------------------------------------------------------------
-// crée le polygone de la France 
-var projection =  d3.geoConicConformal()
-					          .center([2.351, 48.6])
-			            	.scale(20000)
-                    .translate([largeur / 2, hauteur / 2]);
+    // background of the map
+    L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png', {
+                        attribution: ' © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - <a href="//openstreetmap.fr">OSM France</a>',
+                        minZoom: 7,
+                        maxZoom: 12,
+                        trackResize:false
+                    }).addTo(macarte);
 
-var path = d3.geoPath()
-			 .projection(projection);
+    // white background when not Ile de France
+    L.geoJSON(region, { style: {  color: 'white', weight: 2, fillOpacity: 0.9 } }).addTo(macarte);
 
-var tooltipVille = svgFrance.append("rect")	
-    .attr("fill","#4caf50")
-    .attr("position","relative")
-    .attr("rx", 8)
-    .attr("height",50);
+    // trouble with zoom
+    macarte.on("zoomstart", function (e) { document.getElementById("carte").style.opacity=0; });
+    macarte.on("zoomend", function (e) { document.getElementById("carte").style.opacity=1; });
 
-
-//----------------------------------------------------------------
-// crée le polygone de l'ile de france
-function zoomed() {
-    g.selectAll('path') // To prevent stroke width from scaling
-    .attr('transform', d3.event.transform);
-    currentZoom=this.__zoom;
-    pointsd3.selectAll('circle')
-          .attr("cx",function(d){return (projection([parseFloat(d.lat),parseFloat(d.lng)])[0]*currentZoom.k)+currentZoom.x;})
-          .attr("cy",function(d){return (projection([parseFloat(d.lat),parseFloat(d.lng)])[1]*currentZoom.k)+currentZoom.y;});
+    // add border of the departments
+    L.geoJSON(geoJsonFrance, {style: function(feature){return { stroke: true, color: "gray", weight: 1, fill:false }}}).addTo(macarte);
 }
-const zoom = d3.zoom()
-      .scaleExtent([1, 12])
-      .on('zoom', zoomed);
-svgFrance.call(zoom);
 
-//----------------------------------------------------------------
-/*
- * Create points of interets depending on the csv
-**/
-function createCircles(){
-  // création des points 
-    pointsd3 = svgFrance.selectAll(".points")
-      .data(mydata)
-      .enter();
-
-  // rond représentant les points
-    pointsd3
-      .append("circle")
-      .attr("r", 4)
-      .attr("id",function(d){return "rond"+d.id.replace(/[^\w\d]/gi, '');})
-      .attr("fill", "#585858")
-      .attr("cx",function(d){return projection([parseFloat(d.lat),parseFloat(d.lng)])[0];})
-      .attr("cy",function(d){return projection([parseFloat(d.lat),parseFloat(d.lng)])[1];})
-      .on("click", function(d) {
-          if (previousSelectedPoint){
-            d3.select(previousSelectedPoint).style('fill', '#585858');
-          }
-          previousSelectedPoint=this;
-          d3.select(this).style('fill', 'red');
-          displayFirst(d);
-      });
-}
-//----------------------------------------------------------------
-/*
- * To update the interesting points
-**/
-function removeAllInMap(){
-    $('circle')
-     .attr("display","none");
-}
-//----------------------------------------------------------------
-/*
- * Display only the interesting points
-**/
-function displayOnMap(i){
-     $("#rond"+i["id"].replace(/[^\w\d]/gi, ''))
-     .attr("display","inline");
-}
-//----------------------------------------------------------------
-// affiche la carte
-//----------------------------------------------------------------
-function displayileDeFrance() {
-	g.selectAll("path")
-	   .data(geoJsonFrance.features)
-	   .enter()
-	   .append("path")
-	   .attr("class","france")
-	   .style("stroke-width","2px")
-	   .attr("vector-effect", "non-scaling-stroke")
-        .style("stroke", "white");
-    g.selectAll(".france")
-		 .attr( "fill", "#eeeeee" )
-	     .attr("d", path);
+//----------------------------------------------------------
+/**
+ * From input data add markers
+ */
+function updateDataInMap(data){
+    // remove existing makers
+    if (markers!= null ) {markers.clearLayers();}
+    // personnal marker icon
+    var myIcon = L.icon({
+            iconUrl: "./resources/img/map-marker-icon.png",
+            iconSize: [40, 40],
+            iconAnchor: [25, 50],
+            popupAnchor: [-3, -76],
+        });
+    // create the group of markers (to remove them easly)
+    markers= L.layerGroup().addTo(macarte);
+    // add all the dots
+    for( d in data){
+        if (d!="columns"){
+            // only the one that are validated by the filters
+            if (filterAcceptThisItem(mydata[d])){
+                var found=false;
+                // some markers have the same coordinates
+                for (m in markers._layers){
+                    if (markers._layers[m]._latlng["lng"]==data[d]["lat"] && markers._layers[m]._latlng["lat"]==data[d]["lng"]){
+                        // add content to existing point (same coordinates)
+                        markers._layers[m]._popup._content+="<br>"+data[d]["id"];
+                        found=true;
+                        break;
+                    }
+                }
+                if (! found){
+                    // new point
+                    var marker = L.marker([data[d]["lng"],data[d]["lat"] ], { icon: myIcon }).addTo(markers);
+                    marker.bindPopup(data[d]["id"]);
+                }
+            }
+        }
+    }
 }

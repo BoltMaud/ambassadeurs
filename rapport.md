@@ -11,4 +11,5 @@
 
 - colonnes obligatoires : lat lng id 
 
-- 
+- finalement utilisation de leaflet et openstreetmap
+

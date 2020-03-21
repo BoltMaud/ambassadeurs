@@ -9,7 +9,7 @@
  * box of d should be first because d has been selected
  */
 function displayFirst(d){
-    
+
 }
 
 //----------------------------------------------------------------

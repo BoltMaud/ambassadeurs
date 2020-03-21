@@ -4,43 +4,44 @@
 // main file that load the data and process the column names
 //----------------------------------------------------------------
 
-// d3 coordonnées de la France
+// coordonnées de la France
 var geoJsonFrance;
 // to display the in select of filter :
 listOfColumnNames=[];
 // data of the CSV
 var mydata;
 
-//create the materialize select of the html
-$(document).ready(function() {
-    $('select').material_select();
-});
-
-//----------------------------------------------------------
-/**
- * Récupération des données des différents fichiers en entrée.
- * Puis début de l'éxécution du script.
- */
+// data of Labs
 var dataPromise = d3.queue()
     .defer(d3.tsv, "data.csv")
-    .defer(d3.json, "ressources/data/departements-ile-de-france.geojson")
-    .await(function(error, data, ileDeFrance) {
+    .defer(d3.json, "resources/data/departements-ile-de-france.geojson")
+    .defer(d3.json, "resources/data/iledeFrance.geojson")
+    .await(function(error, data, ileDeFrance,Region) {
         if (error) {
             console.error('Oh dear, something went wrong: ' + error);
         }
         else {
             geoJsonFrance = ileDeFrance;
+            region=Region
             const p2 = new Promise(function(resolve, reject) {
                 // columns
                 dataProcess(data);
-                // dots in map
-                createCircles();
-                // background of ileDeFrance
-                displayileDeFrance();});
+                });
             // create boxes and dots
-            p2.then(updatesBoxesAndMapDueToFilter());
+            p2.then(startMapBoxes());
+
         }
     });
+
+//----------------------------------------------------------
+/**
+ * When mydata is filled, load boxes and map
+ */
+function startMapBoxes(){
+    initMap();
+    updatesBoxesAndMapDueToFilter();
+}
+
 //------------------------------------------------------------
 /**
  * Initialize var mydata
@@ -48,14 +49,14 @@ var dataPromise = d3.queue()
  * Launches all the boxes of the data
  */
 function dataProcess(data) {
-    mydata=data;
-    listOfColumnNames= data.columns;
-    console.log(listOfColumnNames)
+    mydata = data;
+    let listOfColumnNames = data.columns;
     for (name  in listOfColumnNames) {
-        if (listOfColumnNames[name] != "lat" && listOfColumnNames[name]!="lng"){
-            addNameInSelect(listOfColumnNames[name])
+        if (listOfColumnNames[name] !== "lat" && listOfColumnNames[name]!=="lng"){
+            addNameInSelect(listOfColumnNames[name]);
         }
     }
+    $('select').formSelect();
 }
 
 //------------------------------------------------------------
@@ -65,11 +66,10 @@ function dataProcess(data) {
  * needed in dataProcess
  */
 function addNameInSelect(name){
-    var node = document.createElement("option");
-    var textnode = document.createTextNode(name);
-    node.appendChild(textnode);
+    let node = document.createElement("option");
+    let textNode = document.createTextNode(name);
+    node.appendChild(textNode);
     document.getElementById("filterOnAttributes").appendChild(node);
-    $('select').material_select();
 }
 
 //----------------------------------------------------------------
@@ -78,14 +78,19 @@ function addNameInSelect(name){
  * everything is recomptued (not the best thing but it's a small project
  */
 function updatesBoxesAndMapDueToFilter(){
-    removeAllInMap();
     document.getElementById("results").innerHTML="";
     for (i in mydata){
         if (i!="columns"){
             if (filterAcceptThisItem(mydata[i])){
                 displayBox(mydata[i]);
-                displayOnMap(mydata[i]);
             }
         }
     }
+    updateDataInMap(mydata);
 }
+
+
+// ---------------------------------------------------------------
+  $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });

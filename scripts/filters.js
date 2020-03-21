@@ -101,7 +101,7 @@ function addSelectorWithCheckbox(selectedColumnInFilter,listOfValues){
     p1.then(finishSelector(node));
 }
 function finishSelector(node){
-        $('select').material_select();
+        $('select').formSelect();
 }
 //----------------------------------------------------------------
 /**
@@ -162,8 +162,6 @@ function addInput(selectedColumnInFilter){
 
     var node = document.createElement("div");
     node.classList.add("input-field");
-    node.classList.add("col");
-    node.classList.add("s4");
     node.id="filterRange1";
     document.getElementById("filterInput").appendChild(node);
 
@@ -176,6 +174,18 @@ function addInput(selectedColumnInFilter){
     label.htmlFor="searchby";
     document.getElementById("filterRange1").appendChild(node);
     document.getElementById("filterRange1").appendChild(label);
+
+    dictOfAutocomplete={}
+    for( d in mydata){
+        if(d!="columns"){
+               dictOfAutocomplete[mydata[d][selectedColumnInFilter]]=null;
+        }
+    }
+    $(document).ready(function(){
+        $('#searchby').autocomplete({
+          data: dictOfAutocomplete,
+        });
+      });
 }
 //----------------------------------------------------------------
 /**
@@ -201,7 +211,7 @@ function applyFilter(){
     document.getElementById("addFilter").style.display="none";
     document.getElementById("filterIs").innerHTML="";
     $('#filterOnAttributes option:selected').remove();
-    $('select').material_select();
+    $('select').formSelect();
     updatesBoxesAndMapDueToFilter();
 }
 

@@ -1,11 +1,12 @@
-#cartesvg{
-    position:fixed;
-}
 
 #title{
     font-size:20pt;
     text-align:right;
     padding-right:20px;
+    line-height:40px;
+}
+#titlebtn{
+    font-size:20pt;
 }
 
 .select-wrapper input.select-dropdown{
@@ -20,8 +21,16 @@
 }
 
 nav{
-  height: 80px !important;
+  height: 90px !important;
 }
 circle:hover{
     cursor: pointer;
+}
+#carte{
+    height:600px;
+    width:700px;
+    position:fixed;
+}
+body{
+    color:back;
 }
