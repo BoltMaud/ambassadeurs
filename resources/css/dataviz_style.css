@@ -34,3 +34,9 @@ circle:hover{
 body{
     color:back;
 }
+
+#popupCharger{
+    position:absolute;
+    top:120px;
+    display:none;
+}
