@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-<div id="game">
+<div id="bodyyy">
 
   <div class="row">
   <!-- Dropdown Structure -->
@@ -42,14 +42,14 @@
           <div  class=" right indigo-text text-lighten-5 col s3">
             <div id="title" >Laboratoires publiques
               <div id="titlebtn">
-              <a class="btn-small btn-floating waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Modifier les données de la carte">
+              <a class="btn-small btn-floating waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Modifier les données de la carte" onclick="modify()">
                 <i class="material-icons">edit</i></a>
               <a class="btn-small btn-floating waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Charger un fichier carte"
                  onclick="loadFile()">
                 <i class="material-icons">file_download</i></a>
                 <a class="btn-small btn-floating waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Enregistrer mon fichier carte"
                 onclick="exportFile()">
-                  <i class="material-icons">archive</i></a></div></div>
+                  <i class="material-icons">save</i></a></div></div>
           </div>
 
         </div>
@@ -58,6 +58,7 @@
   </div>
   <div class="row">
     <div id="filters" class="col s6">
+
 
     </div>
   </div>
@@ -76,9 +77,25 @@
 
 
   <div class="row">
-    <div class="col s4 offset-s4" >
-      <div id="popupEdit" class="card col s4 ">
-          
+    <div class="col s8 offset-s2" >
+      <div id="popupEdit" class="card col s8 ">
+        <div class="card-content">
+          <span class="right">
+              <a class="btn-small btn-floating waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Tout supprimer et recommencer">
+                <i class="material-icons">delete</i></a>
+              <a class="btn-small btn-floating waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Enregistrer et revenir sur la carte"  onclick="endModify()">
+                <i class="material-icons">check</i></a>
+          </span>
+          <span class="card-title">Modifier mes données</span>
+
+
+
+          <table>
+            <th>
+
+            </th>
+          </table>
+        </div>
       </div>
     </div>
   </div>

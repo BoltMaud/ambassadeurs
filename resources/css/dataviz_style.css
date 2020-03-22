@@ -40,3 +40,9 @@ body{
     top:120px;
     display:none;
 }
+
+#popupEdit{
+    position:absolute;
+    top:120px;
+    display:none;
+}

@@ -1,8 +1,13 @@
 //----------------------------------------------------------------
 // Auteurs : Mathilde
 // Date : Mars 2020
+// file for the three buttons
 //----------------------------------------------------------------
 
+//----------------------------------------------------------------
+/**
+ * export the file
+ */
 function exportFile(){
     const rows=[];
     const columns= mydata["columns"];
@@ -29,10 +34,26 @@ function exportFile(){
     link.click();
 }
 
+//----------------------------------------------------------------
+/**
+ * show card to upload a file
+ */
 function loadFile(){
     document.getElementById("popupCharger").style.display="block";
 }
 
+//----------------------------------------------------------------
+/**
+ * hide card to upload a file
+ */
+function endLoad(){
+    document.getElementById("popupCharger").style.display="none";
+}
+
+//----------------------------------------------------------------
+/**
+ * read and update the map with the new data
+ */
 function uploadFile(files){
     var reader = new FileReader();
     reader.readAsText(files[0]);
@@ -61,6 +82,25 @@ function uploadFile(files){
     }
 }
 
-function endLoad(){
-    document.getElementById("popupCharger").style.display="none";
+//----------------------------------------------------------------
+/**
+ * show card to modify
+ */
+function modify(){
+    document.getElementById("popupEdit").style.display="block";
+    document.getElementById("bodyyy").style.opacity="0.2";
 }
+
+//----------------------------------------------------------------
+/**
+ * hide card to modify
+ */
+function endModify(){
+    document.getElementById("popupEdit").style.display="none";
+    document.getElementById("bodyyy").style.opacity="1";
+}
+
+//----------------------------------------------------------------
+/**
+ * hide card to modify
+ */
