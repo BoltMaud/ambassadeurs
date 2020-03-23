@@ -36,7 +36,7 @@ $("#filterOnAttributes").on('change', function() {
     selectedColumnInFilter=$(this)[0].selectedOptions[0].text;
 
     // checkbox or range
-    var listOfValues=[]
+    var listOfValues=[];
     // get unique numbers in this column to know how many there are
     // this will determine checkboxes or range
     let p1 = new Promise(function(resolve, reject) {
@@ -211,6 +211,8 @@ function applyFilter(){
     document.getElementById("addFilter").style.display="none";
     document.getElementById("filterIs").innerHTML="";
     $('#filterOnAttributes option:selected').remove();
+    $('#filterOnAttributes').find('option[value=""]').prop('selected', true);
+    $('#titleFilter').attr('selected','selected');
     $('select').formSelect();
     updatesBoxesAndMapDueToFilter();
 }

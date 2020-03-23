@@ -19,11 +19,10 @@ function displayFirst(d){
 function displayBox(item){
     var node = document.createElement("div");
     node.classList.add("col");
-    node.classList.add("card");
+    node.classList.add("row");
     node.classList.add("grey");
     node.classList.add("lighten-3");
-    node.classList.add("s10");
-    node.classList.add("offset-s1");
+    node.classList.add("s12");
     node.id=item["id"]+"box";
     document.getElementById("results").appendChild(node);
 

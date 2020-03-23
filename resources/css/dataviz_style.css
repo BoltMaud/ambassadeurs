@@ -20,20 +20,10 @@
     display:none;
 }
 
-nav{
-  height: 90px !important;
-}
 circle:hover{
     cursor: pointer;
 }
-#carte{
-    height:600px;
-    width:700px;
-    position:fixed;
-}
-body{
-    color:back;
-}
+
 
 #popupCharger{
     position:absolute;
