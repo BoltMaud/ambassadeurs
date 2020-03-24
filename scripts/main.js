@@ -12,6 +12,7 @@ listOfColumnNames=[];
 var mydata;
 
 // data of Labs
+function startouille(){
 var dataPromise = d3.queue()
     .defer(d3.tsv, "data.csv")
     .defer(d3.json, "resources/data/departements-ile-de-france.geojson")
@@ -32,6 +33,7 @@ var dataPromise = d3.queue()
 
         }
     });
+    }
 
 //----------------------------------------------------------
 /**

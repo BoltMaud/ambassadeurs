@@ -20,39 +20,38 @@
             <a class="sidenav-trigger" data-target="mobile-demo" href="#"><i class="material-icons">menu</i></a>
             <ul class="tabs tabs-transparent hide-on-med-and-down">
                 <li class="tab red"><a class="active" href="#home"><i class="material-icons left">home</i>Accueil</a></li>
-                <li class="tab red"><a href="#map"><i class="material-icons left">map</i>Ma carte</a></li>
+                <li class="tab red"><a href="#tuto"><i class="material-icons left">assignment</i>Tutoriel</a></li>
+                <li class="tab red"><a href="#map" onclick="startouille()"><i class="material-icons left">map</i>Ma carte</a></li>
                 <li class="tab red"><a href="#test3"><i class="material-icons left">edit_location</i>Mes points</a></li>
-                <li class="tab red"><a href="#about"><i class="material-icons left">person_pin</i>À propos</a></li>
-                <li class="tab red"><a href="#contact"><i class="material-icons left">alternate_email</i>Contact</a></li>
             </ul>
     </nav>
 </div>
 <!-- Menu sur mobile -->
 <ul class="sidenav" id="mobile-demo">
-    <li><a href="#home"><i class="material-icons left">home</i>Accueil</a></li>
+    <li><a href="#map"><i class="material-icons left">home</i>Accueil</a></li>
+    <li><a href="#tuto"><i class="material-icons left">assignment</i>Tutoriel</a></li>
     <li><a href="#map"><i class="material-icons left">map</i>Ma carte</a></li>
     <li><a href="#test3"><i class="material-icons left">edit_location</i>Mes points</a></li>
-    <li><a href="#about"><i class="material-icons left">person_pin</i>À propos</a></li>
-    <li><a href="#contact"><i class="material-icons left">alternate_email</i>Contact</a></li>
 </ul>
+
 <!--HOME-->
 <div class="" id="home">
     <div id="index-banner" class="parallax-container">
         <div class="section no-pad-bot">
             <div class="container">
                 <br><br>
-                <h1 class="header center teal-text text-lighten-2">Ma carte d'île-de-France</h1>
+                <h1 class="header center white-text ">Ma carte d'île-de-France</h1>
                 <div class="row center">
-                    <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                    <h5 class="header col s12  white-text "> Créer sa carte personnalisée d'île de France, prendre le temps de redécouvrir sa région </h5>
                 </div>
                 <div class="row center">
-                    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Voir l'exemple</a>
+                    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large red">Voir l'exemple</a>
                 </div>
                 <br><br>
-            
+
             </div>
         </div>
-        <div class="parallax"><img src="resources/img/banner.jpg" alt="Unsplashed background img 1"></div>
+        <div class="parallax"><img src="resources/img/banner3.jpeg" alt="Unsplashed background img 1"></div>
     </div>
     
     
@@ -61,37 +60,37 @@
             
             <!--   Icon Section   -->
             <div class="row">
+
+                
                 <div class="col s12 m4">
                     <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-                        <h5 class="center">Speeds up development</h5>
+                        <h2 class="center red-text"><i class="material-icons">gesture</i></h2>
+                        <h5 class="center">Présentation</h5>
                         
-                        <p class="light">We did most of the heavy lifting for you to provide a default stylings
-                            that incorporate our custom components. Additionally, we refined animations and
-                            transitions to provide a smoother experience for developers.</p>
+                        <p class="light center"><i>Ma Carte d'île de France</i> est un outil en ligne vous permettant d'enregistrer
+                        vos points d'intérêt dans la région et les informations associées à ces points. Une fois la carte créée, un système de
+                        filtres vous permet de visualiser aisément vos adresses.</p>
+                    </div>
+                </div>
+
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center red-text"><i class=" medium material-icons">edit_location</i></h2>
+                        <h5 class="center">Comment ça marche ?</h5>
+
+                        <p class="light center">Trouvez un tutoriel détaillé étape par étape, accessible aux plus jeunes comme aux anciens, pour créer votre carte
+                        personnalisée d'île de France.</p>
                     </div>
                 </div>
                 
                 <div class="col s12 m4">
                     <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                        <h5 class="center">User Experience Focused</h5>
+                        <h2 class="center red-text"><i class="small material-icons">thumb_up</i></h2>
+                        <h5 class="center">Vos cartes !</h5>
                         
-                        <p class="light">By utilizing elements and principles of Material Design, we were able
-                            to create a framework that incorporates components and animations that provide more
-                            feedback to users. Additionally, a single underlying responsive system across all
-                            platforms allow for a more unified user experience.</p>
-                    </div>
-                </div>
-                
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                        <h5 class="center">Easy to work with</h5>
-                        
-                        <p class="light">We have provided detailed documentation as well as specific code
-                            examples to help new users get started. We are also always open to feedback and can
-                            answer any questions a user may have about Materialize.</p>
+                        <p class="light center">Envoyez-nous vos fichiers de carte avec votre prénom par email afin de voir votre carte
+                            apparaître sur le site. Ainsi, enrichissons ensemble les bonnes adresses de la région d'île de France !
+                        </p>
                     </div>
                 </div>
             </div>
@@ -100,7 +99,8 @@
         <br><br>
     </div>
 </div>
-<!--MAP-->
+
+<!--MAP----------------------------------------------->
 <div class="col s12" id="map">
     <div class="navbar-fixed">
         <nav class="white">
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     <div class="col s3" id="filterIs">
-        
+
                     </div>
                     <div class="col s1" id="addFilter">
                         <a class="btn waves-effect waves-light" onclick="addFilter()">OK</a>
@@ -128,54 +128,104 @@
     </div>
     <div class="row">
         <div class="col s4" id="results">
-        
+
         </div>
-        
+
         <div class="col s8" id="divcarte">
             <div class="row" id="carte">
-            
+
             </div>
         </div>
     </div>
 </div>
-<div class="col s12" id="test3">Test 3</div>
-<div class="col s12" id="about">about...</div>
-<div class="col s12" id="contact">contact...</div>
 
-<footer class="page-footer orange">
+
+<!--tuto----------------------------------------------->
+<div class="col s12 grey-text text-darken-3" id="tuto">
+
+    <div class="container border-bottom">
+        <br><br>
+        <h2 class="header ">Faire ma carte en 5 étapes</h2>
+    </div>
     <div class="container">
         <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">Company Bio</h5>
-                <p class="grey-text text-lighten-4">We are a team of college students working on this
-                    project like it's our full time job. Any amount would help support and continue
-                    development on this project and is greatly appreciated.</p>
+            <div class="col s12 ">
+                <h4><i class="medium material-icons red-text left">filter_1</i> Ce qu'il faut savoir avant de faire sa carte</h4>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 ">
+                <h4><i class="medium material-icons red-text left">filter_2</i> Créer une carte vierge</h4>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 ">
+                <h4><i class="medium material-icons red-text left">filter_3</i> Ajouter des points</h4>
+
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 ">
+                <h4><i class="medium material-icons red-text left">filter_4</i> Visualiser et filtrer</h4>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 ">
+                <h4><i class="medium material-icons red-text left">filter_5</i> Enregistrer et recharger</h4>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+<!------------------------------------------------->
+<div class="col s12" id="test3">
+
+</div>
+
+<footer class="page-footer grey darken-2">
+    <div class="container ">
+        <div class="row">
+            <div class="col l9 s12">
+                <h5 class="white-text">Context du projet</h5>
+                <p class="grey-text text-lighten-4">L'outil <b>Ma Carte d'île de France</b> a été dévelopé dans le cadre des <a href="https://www.iledefrance.fr/trophees-des-etudiants-ambassadeurs-de-lile-de-france-2019-2020">Trophées des étudiants-ambassadeurs de l'Île-de-France 2019-2020</a>.
+                    La région d'île de France organise ce concours destiné aux étudiants en mobilité internationale afin de leur apporter une aide financière.
+                    Cette récompense est alors destinée aux participants ayant contribué à la mise en valeur de la richesse de la région d'île de France.
+                </p>
             
             
             </div>
             <div class="col l3 s12">
-                <h5 class="white-text">Settings</h5>
+                <h5 class="white-text">Par</h5>
                 <ul>
-                    <li><a class="white-text" href="#!">Link 1</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
-                </ul>
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Connect</h5>
-                <ul>
-                    <li><a class="white-text" href="#!">Link 1</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
+                    <li>Créateur: Mathilde Boltenhagen</li>
+                    <li>Aide technique: Arthur Scheidel</li>
+                    <li>Conseils: Louise Chancelier</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="footer-copyright">
+    <div class="footer-copyright grey darken-3">
         <div class="container">
-            Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            <a href="#contact"><i class="material-icons left">alternate_email</i> email </a>
+        </div>
+    </div>
+    <div class="footer-copyright grey darken-4">
+        <div class="container">
+            Made with <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>
         </div>
     </div>
 </footer>

@@ -36,3 +36,11 @@ circle:hover{
     top:120px;
     display:none;
 }
+
+.border-bottom{
+    border-bottom: 1px solid #bdbdbd;
+}
+body{
+    height:100%;
+}
+
