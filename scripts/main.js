@@ -10,30 +10,34 @@ var geoJsonFrance;
 listOfColumnNames=[];
 // data of the CSV
 var mydata;
+var firstTime=true;//temporaire
 
 // data of Labs
 function startouille(){
-var dataPromise = d3.queue()
-    .defer(d3.tsv, "data.csv")
-    .defer(d3.json, "resources/data/departements-ile-de-france.geojson")
-    .defer(d3.json, "resources/data/iledeFrance.geojson")
-    .await(function(error, data, ileDeFrance,Region) {
-        if (error) {
-            console.error('Oh dear, something went wrong: ' + error);
-        }
-        else {
-            geoJsonFrance = ileDeFrance;
-            region=Region
-            const p2 = new Promise(function(resolve, reject) {
-                // columns
-                dataProcess(data);
-                });
-            // create boxes and dots
-            p2.then(startMapBoxes());
+if (firstTime){
+    var dataPromise = d3.queue()
+        .defer(d3.tsv, "data.csv")
+        .defer(d3.json, "resources/data/departements-ile-de-france.geojson")
+        .defer(d3.json, "resources/data/iledeFrance.geojson")
+        .await(function(error, data, ileDeFrance,Region) {
+            if (error) {
+                console.error('Oh dear, something went wrong: ' + error);
+            }
+            else {
+                geoJsonFrance = ileDeFrance;
+                region=Region
+                const p2 = new Promise(function(resolve, reject) {
+                    // columns
+                    dataProcess(data);
+                    });
+                // create boxes and dots
+                p2.then(startMapBoxes());
 
-        }
-    });
+            }
+        });
+        firstTime=false;
     }
+}
 
 //----------------------------------------------------------
 /**
