@@ -6,10 +6,8 @@
 
 // coordonnées de la France
 var geoJsonFrance;
-// to display the in select of filter :
-listOfColumnNames=[];
 // data of the CSV
-var mydata;
+var mydata=null;
 var firstTime=true;//temporaire
 
 // data of Labs

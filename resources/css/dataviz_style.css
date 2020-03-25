@@ -43,4 +43,19 @@ circle:hover{
 body{
     height:100%;
 }
-
+table,tbody {
+    width: 100%;
+    table-layout: fixed;
+    background-color:#eeeeee;
+}
+tr {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+td, th{
+    text-align: center;
+    width: 150px;
+    padding: 10px 0 10px;
+}
+.table-wrapper {
+  overflow-x: scroll;
+}

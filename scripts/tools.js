@@ -82,25 +82,24 @@ function uploadFile(files){
     }
 }
 
-//----------------------------------------------------------------
-/**
- * show card to modify
- */
-function modify(){
-    document.getElementById("popupEdit").style.display="block";
-    document.getElementById("bodyyy").style.opacity="0.2";
+function fillTable(){
+    document.getElementById("tableOfElements").innerHTML="";
+    let columns= mydata["columns"];
+    for(m in mydata){
+        var newLine=document.createElement("tr");
+        newLine.id="trLine"+mydata[m]["id"];
+        document.getElementById("tableOfElements").appendChild(newLine);
+        for (c in columns){
+            var newTd=document.createElement("td");
+            newTd.innerHTML=mydata[m][columns[c]];
+            document.getElementById("trLine"+mydata[m]["id"]).appendChild(newTd);
+        }
+        var newTd=document.createElement("td");
+        newTd.innerHTML='<a class="btn-small btn-floating black tooltipped" data-position="bottom" data-tooltip="Ajouter un point"onclick="removePoint(\"trLine'+mydata[m]["id"]+'\")"><i class="material-icons">delete</i>';
+        document.getElementById("trLine"+mydata[m]["id"]).appendChild(newTd);
+    }
 }
 
-//----------------------------------------------------------------
-/**
- * hide card to modify
- */
-function endModify(){
-    document.getElementById("popupEdit").style.display="none";
-    document.getElementById("bodyyy").style.opacity="1";
-}
+function removePoint(point){
 
-//----------------------------------------------------------------
-/**
- * hide card to modify
- */
+}
