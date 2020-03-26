@@ -29,12 +29,14 @@ circle:hover{
     position:absolute;
     top:120px;
     display:none;
+    z-index:1000;
 }
 
-#popupEdit{
+#addColumnDiv{
     position:absolute;
     top:120px;
     display:none;
+    z-index:1000;
 }
 
 .border-bottom{
@@ -43,19 +45,34 @@ circle:hover{
 body{
     height:100%;
 }
-table,tbody {
+table {
     width: 100%;
     table-layout: fixed;
-    background-color:#eeeeee;
+    display: block;
+    overflow-x: auto;
+
 }
+tbody{
+    width: 100%;
+    overflow-y: auto;
+}
+thead {
+    width: 100%;
+}
+
 tr {
     border: 1px solid rgba(0, 0, 0, 0.12);
 }
 td, th{
     text-align: center;
-    width: 150px;
-    padding: 10px 0 10px;
+    padding: 5px 10px 5px 5px;
+    background-color:#eeeeee;
 }
-.table-wrapper {
-  overflow-x: scroll;
+
+#headerOfTableOfPoints{
+    background-color:#9e9e9e;
+}
+
+#inputDataInTable{
+   background-color:#fafafa;
 }

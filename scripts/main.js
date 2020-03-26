@@ -35,6 +35,9 @@ if (firstTime){
         });
         firstTime=false;
     }
+   else{
+    updatesBoxesAndMapDueToFilter();
+   }
 }
 
 //----------------------------------------------------------
@@ -82,6 +85,8 @@ function addNameInSelect(name){
  * everything is recomptued (not the best thing but it's a small project
  */
 function updatesBoxesAndMapDueToFilter(){
+    fillTable();
+
     document.getElementById("results").innerHTML="";
     for (i in mydata){
         if (i!="columns"){

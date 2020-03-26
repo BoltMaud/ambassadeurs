@@ -48,6 +48,7 @@ function loadFile(){
  */
 function endLoad(){
     document.getElementById("popupCharger").style.display="none";
+    document.getElementById("selectedFile").innerHTML="";
 }
 
 //----------------------------------------------------------------
@@ -83,23 +84,109 @@ function uploadFile(files){
 }
 
 function fillTable(){
-    document.getElementById("tableOfElements").innerHTML="";
+    //les colonnes
     let columns= mydata["columns"];
+    setHeader(columns);
+
+    // les données
+    document.getElementById("tableOfElements").innerHTML="";
     for(m in mydata){
-        var newLine=document.createElement("tr");
-        newLine.id="trLine"+mydata[m]["id"];
-        document.getElementById("tableOfElements").appendChild(newLine);
-        for (c in columns){
+        if (m!="columns"){
+            var newLine=document.createElement("tr");
+            newLine.id="trLine"+mydata[m]["Identifiant"];
+            document.getElementById("tableOfElements").appendChild(newLine);
+            for (c in columns){
+                var newTd=document.createElement("td");
+                newTd.innerHTML=mydata[m][columns[c]];
+                document.getElementById("trLine"+mydata[m]["Identifiant"]).appendChild(newTd);
+            }
             var newTd=document.createElement("td");
-            newTd.innerHTML=mydata[m][columns[c]];
-            document.getElementById("trLine"+mydata[m]["id"]).appendChild(newTd);
+            newTd.innerHTML='<a class="btn-small btn-floating black tooltipped" data-position="bottom" data-tooltip="Supprimer ce point" onclick="removePoint(\'trLine'+mydata[m]["Identifiant"]+'\')"><i class="material-icons">delete</i>';
+            document.getElementById("trLine"+mydata[m]["Identifiant"]).appendChild(newTd);
         }
-        var newTd=document.createElement("td");
-        newTd.innerHTML='<a class="btn-small btn-floating black tooltipped" data-position="bottom" data-tooltip="Ajouter un point"onclick="removePoint(\"trLine'+mydata[m]["id"]+'\")"><i class="material-icons">delete</i>';
-        document.getElementById("trLine"+mydata[m]["id"]).appendChild(newTd);
     }
+    $('.tooltipped').tooltip();
+}
+function setHeader(columns){
+    document.getElementById("headerOfTableOfPoints").innerHTML="";
+    document.getElementById("inputDataInTable").innerHTML="";
+    for(c in columns){
+        var newColumn=document.createElement("th");
+        newColumn.innerHTML=columns[c];
+        if (columns[c]!= "Identifiant" && columns[c]!="Latitude" && columns[c]!="Longitude"){
+            newColumn.innerHTML+="<br>";
+            newColumn.innerHTML+='<a class="btn-small  btn-floating black tooltipped" data-position="bottom" data-tooltip="Supprimer la colonne" onclick="removeColumn(\''+columns[c]+'\')"><i class="tiny material-icons">delete</i>';
+        }
+        document.getElementById("headerOfTableOfPoints").appendChild(newColumn);
+
+        var newField = document.createElement("td");
+        newField.innerHTML=' <div class="input-field"><input  id="new'+columns[c]+'" type="text" class="validate"></div>'
+        document.getElementById("inputDataInTable").appendChild(newField);
+    }
+    var addButton = document.createElement("td");
+    addButton.innerHTML='<a class="btn-small btn-floating red tooltipped" data-position="bottom" data-tooltip="Ajouter un point" onclick="addPoint()"> <i class="material-icons">add</i></a>';
+    document.getElementById("inputDataInTable").appendChild(addButton);
+
+    var addButton = document.createElement("td");
+    addButton.innerHTML='<a class="btn-small btn-floating black tooltipped" data-position="bottom" data-tooltip="Ajouter une colonne" onclick="showAddColumn()"> <i class="material-icons" style="transform:rotate(-90deg)">playlist_add</i></a>';
+    document.getElementById("headerOfTableOfPoints").appendChild(addButton);
+}
+
+function createNew(){
+    let requiredColumns=["Identifiant","Longitude","Latitude"];
+    setHeader(requiredColumns);
+    document.getElementById("tableOfElements").innerHTML="";
+    mydata=[];
+    mydata["columns"]=requiredColumns;
 }
 
 function removePoint(point){
-
+    let identifiant=point.split("trLine")[1];
+    $("#"+point).removeClass("tooltipped");
+    $('.tooltipped').tooltip();
+    document.getElementById(point).remove();
+    for (m in mydata){
+        if (mydata[m]["Identifiant"]==identifiant){
+            mydata.splice(m,1);
+        }
+    }
 }
+
+function addPoint(){
+    let columns=mydata["columns"];
+    var newPoint={};
+    for (c in columns){
+        newPoint[columns[c]]=document.getElementById("new"+columns[c]).value;
+        document.getElementById("new"+columns[c]).value="";
+    }
+    mydata.push(newPoint);
+    var newLine=document.createElement("tr");
+    newLine.id="trLine"+newPoint["Identifiant"];
+    document.getElementById("tableOfElements").insertBefore(newLine, document.getElementById("tableOfElements").childNodes[0]);
+    for (c in columns){
+        var newTd=document.createElement("td");
+        newTd.innerHTML=newPoint[columns[c]];
+        document.getElementById("trLine"+newPoint["Identifiant"]).appendChild(newTd);
+    }
+    var newTd=document.createElement("td");
+    newTd.innerHTML='<a class="btn-small btn-floating black tooltipped" data-position="bottom" data-tooltip="Supprimer ce point"onclick="removePoint(\'trLine'+newPoint["Identifiant"]+'\')"><i class="material-icons">delete</i>';
+    document.getElementById("trLine"+newPoint["Identifiant"]).appendChild(newTd);
+    $('.tooltipped').tooltip();
+}
+
+function addColumn(){
+    mydata["columns"].push(document.getElementById("newColumnName").value);
+    for (m in mydata){
+        if (m!="columns"){
+            mydata[m][document.getElementById("newColumnName").value]="";
+        }
+    }
+    document.getElementById("newColumnName").value="";
+    document.getElementById("addColumnDiv").style.display="none";
+    console.log()
+    fillTable();
+}
+function showAddColumn(){
+    document.getElementById("addColumnDiv").style.display="block";
+}
+

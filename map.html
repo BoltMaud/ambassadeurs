@@ -72,48 +72,6 @@
 </div>
 
 
-<div class="row">
-    <div class="col s8 offset-s2">
-        <div class="card col s8 " id="popupEdit">
-            <div class="card-content">
-          <span class="right">
-              <a class="btn-small btn-floating waves-effect waves-light tooltipped" data-position="bottom"
-                 data-tooltip="Tout supprimer et recommencer">
-                <i class="material-icons">delete</i></a>
-              <a class="btn-small btn-floating waves-effect waves-light tooltipped" data-position="bottom"
-                 data-tooltip="Enregistrer et revenir sur la carte" onclick="endModify()">
-                <i class="material-icons">check</i></a>
-          </span>
-                <span class="card-title">Modifier mes données</span>
-
-
-                <table>
-                    <th>
-
-                    </th>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="col s4 offset-s4">
-        <div class="card col s4 " id="popupCharger">
-            <div class="card-content">
-                <span class="card-title">Charger mon fichier carte</span>
-                <input accept=".csv" id="csvFileInput" name="selectedFile[]" onchange="uploadFile(this.files)"
-                       type="file"/>
-                <a class="right btn-small btn-floating tooltipped" data-position="bottom" data-tooltip="Fermer"
-                   onclick="endLoad()">
-                    <i class="material-icons">check</i></a>
-                <output id="selectedFile"></output>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <!-- 3rd party Scripts-->
 <script crossorigin=""

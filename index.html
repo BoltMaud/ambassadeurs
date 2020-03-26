@@ -194,7 +194,7 @@
 <!------------------------------------------------->
 <div class="col s12" id="test3">
     <br>
-    <div class="container border-bottom">
+    <div class="container">
         <div class="row">
             <div class="container ">
                 <div class="input-field ">
@@ -203,7 +203,10 @@
                     <label for="newTitle">Titre de la carte</label>
                 </div>
                 <div class="right">
-
+                    <a class="btn-small btn-floating black tooltipped"
+                       data-position="bottom" data-tooltip="Supprimer pour recommencer"
+                       onclick="createNew()">
+                        <i class="material-icons">delete</i></a>
                     <a class="btn-small btn-floating red tooltipped"
                        data-position="bottom" data-tooltip="Charger un fichier carte"
                        onclick="loadFile()">
@@ -217,41 +220,17 @@
         </div>
 
     </div>
-    <div class="container table-wrapper">
+    <div class="container table-wrapper responsive-table table-status-sheet">
 
         <table>
-            <tr>
-                <th>Identifiant</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-                <th>
-                    <a class="btn-small btn-floating black tooltipped"
-                       data-position="bottom" data-tooltip="Ajouter une colonne">
-                        <i class="material-icons" style="transform:rotate(-90deg)">playlist_add</i></a>
-                </th>
-            </tr>
-            <tr id="inputDataInTable">
-                <td>
-                    <div class="input-field">
-                        <input  id="newIdentifiant" type="text" class="validate">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-field">
-                        <input  id="newLatitude" type="text" class="validate">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-field">
-                        <input  id="newLongitute" type="text" class="validate">
-                    </div>
-                </td>
-                <td id="tdAddLine"><a class="btn-small btn-floating red tooltipped"
-                           data-position="bottom" data-tooltip="Ajouter un point"
-                           onclick="exportFile()">
-                    <i class="material-icons">add</i></a>
-                </td>
-            </tr>
+            <thead>
+                <tr id="headerOfTableOfPoints">
+
+                </tr>
+                <tr id="inputDataInTable">
+
+                </tr>
+            </thead>
             <tbody id="tableOfElements">
 
             </tbody>
@@ -260,7 +239,7 @@
     </div>
     <br>
     <br>
-    <i style="color:grey;"> Confidentialité: les informations que tu rentres sont uniquement stockées sur ton navigateur, nous n'y avons pas accès.</i>
+    <i style="color:grey;"> Confidentialité: les informations rentrées sont uniquement stockées sur votre navigateur, nous n'y avons pas accès.</i>
 
 </div>
 
@@ -297,6 +276,41 @@
         </div>
     </div>
 </footer>
+
+
+<!--  popup-->
+
+<div class="row">
+    <div class="col s4 offset-s4">
+        <div class="card col s4 " id="popupCharger">
+            <div class="card-content">
+                <span class="card-title">Charger mon fichier carte</span>
+                <input accept=".csv" id="csvFileInput" name="selectedFile[]" onchange="uploadFile(this.files)"
+                       type="file"/>
+                <a class="right btn-small btn-floating tooltipped" data-position="bottom" data-tooltip="Fermer"
+                   onclick="endLoad()">
+                    <i class="material-icons">check</i></a>
+                <output id="selectedFile"></output>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s4 offset-s4">
+        <div class="card col s4 " id="addColumnDiv">
+            <div class="card-content">
+                <label for="newColumnName">Nom de la colonne</label>
+                <div class="input-field"><input  id="newColumnName" type="text" class="validate"></div>
+                <a class="right btn-small btn-floating tooltipped" style="margin:10px" data-tooltip="Valider"
+                   onclick="addColumn()">
+                    <i class="material-icons">check</i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <!--  Scripts-->
 <!-- 3rd party Scripts-->

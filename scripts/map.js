@@ -60,17 +60,17 @@ function updateDataInMap(data){
                 var found=false;
                 // some markers have the same coordinates
                 for (m in markers._layers){
-                    if (markers._layers[m]._latlng["lng"]==data[d]["lat"] && markers._layers[m]._latlng["lat"]==data[d]["lng"]){
+                    if (markers._layers[m]._latlng["Longitude"]==data[d]["Latitude"] && markers._layers[m]._latlng["lat"]==data[d]["lng"]){
                         // add content to existing point (same coordinates)
-                        markers._layers[m]._popup._content+="<br>"+data[d]["id"];
+                        markers._layers[m]._popup._content+="<br>"+data[d]["Identifiant"];
                         found=true;
                         break;
                     }
                 }
                 if (! found){
                     // new point
-                    var marker = L.marker([data[d]["lng"],data[d]["lat"] ], { icon: myIcon }).addTo(markers);
-                    marker.bindPopup(data[d]["id"]);
+                    var marker = L.marker([data[d]["Latitude"],data[d]["Longitude"] ], { icon: myIcon }).addTo(markers);
+                    marker.bindPopup(data[d]["Identifiant"]);
                 }
             }
         }

@@ -23,32 +23,32 @@ function displayBox(item){
     node.classList.add("grey");
     node.classList.add("lighten-3");
     node.classList.add("s12");
-    node.id=item["id"]+"box";
+    node.id=item["Identifiant"]+"box";
     document.getElementById("results").appendChild(node);
 
     var node = document.createElement("div");
     node.classList.add("card-content");
     node.classList.add("black-text");
-    node.id=item["id"]+"boxContent1";
-    document.getElementById(item["id"]+"box").appendChild(node);
+    node.id=item["Identifiant"]+"boxContent1";
+    document.getElementById(item["Identifiant"]+"box").appendChild(node);
 
     var node = document.createElement("div");
     node.classList.add("card-action");
     node.classList.add("black-text");
-    node.id=item["id"]+"boxContent2";
-    document.getElementById(item["id"]+"box").appendChild(node);
+    node.id=item["Identifiant"]+"boxContent2";
+    document.getElementById(item["Identifiant"]+"box").appendChild(node);
 
     var node = document.createElement("span");
     node.classList.add("card-title");
-    node.innerHTML=item["id"];
-    document.getElementById(item["id"]+"boxContent1").appendChild(node);
+    node.innerHTML=item["Identifiant"];
+    document.getElementById(item["Identifiant"]+"boxContent1").appendChild(node);
 
     var node = document.createElement("p");
     for (j in item){
-        if (j!="id" && j!="lat" && j!="lng"){
+        if (j!="Identifiant" && j!="Latitude" && j!="Longitude"){
           node.innerHTML+=j+" : "+  item[j]+"<br>";
         }
     }
-    document.getElementById(item["id"]+"boxContent2").appendChild(node);
+    document.getElementById(item["Identifiant"]+"boxContent2").appendChild(node);
 }
 
