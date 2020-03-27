@@ -19,8 +19,6 @@ function displayFirst(d){
 function displayBox(item){
     var boxRow = document.createElement("div");
     boxRow.classList.add("row");
-    boxRow.classList.add("grey");
-    boxRow.classList.add("lighten-3");
     boxRow.id=item["Identifiant"];
     document.getElementById("results").appendChild(boxRow);
 
@@ -31,7 +29,15 @@ function displayBox(item){
 
     var boxCard = document.createElement("div");
     boxCard.classList.add("card");
+    boxCard.classList.add("hoverable");
     boxCol.appendChild(boxCard);
+
+    var boxBtn = document.createElement("a");
+    boxBtn.classList.add("waves-effect");
+    boxBtn.classList.add("waves-teal");
+    boxBtn.classList.add("btn-flat");
+    boxBtn.classList.add("card-btn");
+    boxCard.appendChild(boxBtn);
 
     var cardContent = document.createElement("div");
     cardContent.classList.add("card-content");
@@ -48,10 +54,10 @@ function displayBox(item){
         }
     }
     cardContent.innerHTML += "</ul>";
-    boxCard.appendChild(cardContent);
+    boxBtn.appendChild(cardContent);
 
     var cardAction = document.createElement("div");
     cardAction.classList.add("card-action");
-    boxCard.appendChild(cardAction);
+    boxBtn.appendChild(cardAction);
 }
 

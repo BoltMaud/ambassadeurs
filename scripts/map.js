@@ -70,6 +70,7 @@ function updateDataInMap(data){
                 if (! found){
                     // new point
                     var marker = L.marker([data[d]["Latitude"],data[d]["Longitude"] ], { icon: myIcon }).addTo(markers);
+                    marker._icon.classList.add("marker");
                     marker.bindPopup(data[d]["Identifiant"]);
                 }
             }
