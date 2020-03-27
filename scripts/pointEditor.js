@@ -36,38 +36,26 @@ function exportFile(){
 
 //----------------------------------------------------------------
 /**
- * show card to upload a file
- */
-function loadFile(){
-    document.getElementById("popupCharger").style.display="block";
-}
-
-//----------------------------------------------------------------
-/**
- * hide card to upload a file
- */
-function endLoad(){
-    document.getElementById("popupCharger").style.display="none";
-    document.getElementById("selectedFile").innerHTML="";
-}
-
-//----------------------------------------------------------------
-/**
  * read and update the map with the new data
  */
-function uploadFile(files){
-    var reader = new FileReader();
-    reader.readAsText(files[0]);
+let currentFile;
+function SelectFile(files) {
+    currentFile = files[0];
+}
+
+function UploadFile(){
+    let reader = new FileReader();
+    reader.readAsText(currentFile);
     reader.onload = loadHandler;
 
     function loadHandler(event) {
         mydata=[];
-        lines=event.target.result.split("\n");
-        columns=lines[0].split("\t");
+        let lines = event.target.result.split("\n");
+        let columns = lines[0].split("\t");
         mydata["columns"]=columns;
-        for (var i=1; i<lines.length;i++){
-            var smallDict={};
-            for (c in columns){
+        for (let i=1; i<lines.length; i++){
+            let smallDict = {};
+            for (let c in columns){
                 // ici ya un pb si une case est vide... ne pas faire de cases vides?
                 smallDict[columns[c]]=lines[i].split("\t")[c];
             }
@@ -81,6 +69,7 @@ function uploadFile(files){
        // create boxes and dots
        p2.then(updatesBoxesAndMapDueToFilter());
     }
+    document.getElementById("selectedFile").innerHTML="";
 }
 
 function fillTable(){
@@ -128,7 +117,7 @@ function setHeader(columns){
     document.getElementById("inputDataInTable").appendChild(addButton);
 
     var addButton = document.createElement("td");
-    addButton.innerHTML='<a class="btn-small btn-floating black tooltipped" data-position="bottom" data-tooltip="Ajouter une colonne" onclick="showAddColumn()"> <i class="material-icons" style="transform:rotate(-90deg)">playlist_add</i></a>';
+    addButton.innerHTML='<a class="btn-small btn-floating black tooltipped modal-trigger" data-position="bottom" data-tooltip="Ajouter une colonne" href="#NewColModal"> <i class="material-icons" style="transform:rotate(-90deg)">playlist_add</i></a>';
     document.getElementById("headerOfTableOfPoints").appendChild(addButton);
 }
 
@@ -182,11 +171,7 @@ function addColumn(){
         }
     }
     document.getElementById("newColumnName").value="";
-    document.getElementById("addColumnDiv").style.display="none";
-    console.log()
+    console.log();
     fillTable();
-}
-function showAddColumn(){
-    document.getElementById("addColumnDiv").style.display="block";
 }
 

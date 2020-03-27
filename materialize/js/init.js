@@ -7,5 +7,6 @@ $(document).ready(function(){
   $('.tabs').tabs();
   // Init parallax
   $('.parallax').parallax();
-
+  // Init modals
+  $('.modal').modal();
 });

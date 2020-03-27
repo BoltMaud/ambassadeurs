@@ -24,21 +24,6 @@ circle:hover{
     cursor: pointer;
 }
 
-
-#popupCharger{
-    position:absolute;
-    top:120px;
-    display:none;
-    z-index:1000;
-}
-
-#addColumnDiv{
-    position:absolute;
-    top:120px;
-    display:none;
-    z-index:1000;
-}
-
 .border-bottom{
     border-bottom: 1px solid #bdbdbd;
 }

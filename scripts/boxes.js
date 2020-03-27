@@ -17,38 +17,41 @@ function displayFirst(d){
  * create the html boxe of the item
  */
 function displayBox(item){
-    var node = document.createElement("div");
-    node.classList.add("col");
-    node.classList.add("row");
-    node.classList.add("grey");
-    node.classList.add("lighten-3");
-    node.classList.add("s12");
-    node.id=item["Identifiant"]+"box";
-    document.getElementById("results").appendChild(node);
+    var boxRow = document.createElement("div");
+    boxRow.classList.add("row");
+    boxRow.classList.add("grey");
+    boxRow.classList.add("lighten-3");
+    boxRow.id=item["Identifiant"];
+    document.getElementById("results").appendChild(boxRow);
 
-    var node = document.createElement("div");
-    node.classList.add("card-content");
-    node.classList.add("black-text");
-    node.id=item["Identifiant"]+"boxContent1";
-    document.getElementById(item["Identifiant"]+"box").appendChild(node);
+    var boxCol = document.createElement("div");
+    boxCol.classList.add("col");
+    boxCol.classList.add("s12");
+    boxRow.appendChild(boxCol);
 
-    var node = document.createElement("div");
-    node.classList.add("card-action");
-    node.classList.add("black-text");
-    node.id=item["Identifiant"]+"boxContent2";
-    document.getElementById(item["Identifiant"]+"box").appendChild(node);
+    var boxCard = document.createElement("div");
+    boxCard.classList.add("card");
+    boxCol.appendChild(boxCard);
 
-    var node = document.createElement("span");
-    node.classList.add("card-title");
-    node.innerHTML=item["Identifiant"];
-    document.getElementById(item["Identifiant"]+"boxContent1").appendChild(node);
+    var cardContent = document.createElement("div");
+    cardContent.classList.add("card-content");
 
-    var node = document.createElement("p");
+    var cardTitle = document.createElement("span");
+    cardTitle.classList.add("card-title");
+    cardTitle.innerHTML="<h6>" + item["Identifiant"] + "</h6>";
+    cardContent.appendChild(cardTitle);
+
+    cardContent.innerHTML += "<ul>";
     for (j in item){
         if (j!="Identifiant" && j!="Latitude" && j!="Longitude"){
-          node.innerHTML+=j+" : "+  item[j]+"<br>";
+            cardContent.innerHTML+="<li>"+j+" : "+  item[j]+"</li>";
         }
     }
-    document.getElementById(item["Identifiant"]+"boxContent2").appendChild(node);
+    cardContent.innerHTML += "</ul>";
+    boxCard.appendChild(cardContent);
+
+    var cardAction = document.createElement("div");
+    cardAction.classList.add("card-action");
+    boxCard.appendChild(cardAction);
 }
 

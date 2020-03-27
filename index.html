@@ -22,7 +22,7 @@
                 <li class="tab red"><a class="active" href="#home"><i class="material-icons left">home</i>Accueil</a></li>
                 <li class="tab red"><a href="#tuto"><i class="material-icons left">assignment</i>Tutoriel</a></li>
                 <li class="tab red"><a href="#map" onclick="startouille()"><i class="material-icons left">map</i>Ma carte</a></li>
-                <li class="tab red"><a href="#test3" onclick="fillTable()"><i class="material-icons left">edit_location</i>Mes points</a></li>
+                <li class="tab red"><a href="#pointEditor" onclick="fillTable()"><i class="material-icons left">edit_location</i>Mes points</a></li>
             </ul>
     </nav>
 </div>
@@ -31,10 +31,10 @@
     <li><a href="#map"><i class="material-icons left">home</i>Accueil</a></li>
     <li><a href="#tuto"><i class="material-icons left">assignment</i>Tutoriel</a></li>
     <li><a href="#map" onclick="startouille()"><i class="material-icons left">map</i>Ma carte</a></li>
-    <li><a href="#test3" onclick="fillTable()"><i class="material-icons left">edit_location</i>Mes points</a></li>
+    <li><a href="#pointEditor" onclick="fillTable()"><i class="material-icons left">edit_location</i>Mes points</a></li>
 </ul>
 
-<!--HOME-->
+<!-- HOME -->
 <div class="" id="home">
     <div id="index-banner" class="parallax-container">
         <div class="section no-pad-bot">
@@ -100,8 +100,7 @@
     </div>
 </div>
 
-
-<!--tuto----------------------------------------------->
+<!-- TUTO -->
 <div class="col s12 grey-text text-darken-3" id="tuto">
 
     <div class="container border-bottom">
@@ -152,13 +151,15 @@
 
 </div>
 
-<!--MAP----------------------------------------------->
+<!-- MAP -->
 <div class="col s12" id="map">
     <div class="navbar-fixed">
         <nav class="white">
             <div class="nav-content">
+                <!-- Map Title -->
                 <a class="brand-logo right red-text">Laboratoires publiques</a>
                 <div class="row">
+                    <!-- Filter selector -->
                     <div class="col s4">
                         <div class="input-field white">
                             <i class="material-icons prefix red-text">filter_list</i>
@@ -167,32 +168,35 @@
                             </select>
                         </div>
                     </div>
+    
                     <div class="col s3" id="filterIs">
-
                     </div>
                     <div class="col s1" id="addFilter">
                         <a class="btn waves-effect waves-light" onclick="addFilter()">OK</a>
                     </div>
+                    <!-- Active filters -->
+                    <!-- TODO: need better design when many filters -->
                     <div class="col s4" id="filters"></div>
                 </div>
             </div>
         </nav>
     </div>
     <div class="row">
+        <!-- Box List -->
         <div class="col s4" id="results">
-
+            <!-- Filled by boxes.js:displayBox(item) -->
         </div>
-
+        <!-- Map with points -->
         <div class="col s8" id="divcarte">
             <div class="row" id="carte">
-
+                <!-- Filled by map.js:initMap -->
             </div>
         </div>
     </div>
 </div>
 
-<!------------------------------------------------->
-<div class="col s12" id="test3">
+<!-- POINTS -->
+<div class="col s12" id="pointEditor">
     <br>
     <div class="container">
         <div class="row">
@@ -207,10 +211,7 @@
                        data-position="bottom" data-tooltip="Supprimer pour recommencer"
                        onclick="createNew()">
                         <i class="material-icons">delete</i></a>
-                    <a class="btn-small btn-floating red tooltipped"
-                       data-position="bottom" data-tooltip="Charger un fichier carte"
-                       onclick="loadFile()">
-                        <i class="material-icons">file_download</i></a>
+                    <a class="btn-small btn-floating red tooltipped modal-trigger" data-position="bottom" data-tooltip="Charger un fichier carte" href="#LoadFileModal"><i class="material-icons">file_download</i></a>
                     <a class="btn-small btn-floating red tooltipped"
                        data-position="bottom" data-tooltip="Enregistrer mon fichier carte"
                        onclick="exportFile()">
@@ -240,7 +241,7 @@
     <br>
     <br>
     <i style="color:grey;"> Confidentialité: les informations rentrées sont uniquement stockées sur votre navigateur, nous n'y avons pas accès.</i>
-
+    <!-- Modal Trigger -->
 </div>
 
 <footer class="page-footer grey darken-2">
@@ -277,40 +278,44 @@
     </div>
 </footer>
 
+<!-- Modal New Column  -->
+<div id="NewColModal" class="modal">
+    <div class="modal-content">
+        <label for="newColumnName">Nom de la colonne</label>
+        <div class="input-field"><input  id="newColumnName" type="text" class="validate"></div>
+        <a class="modal-close right btn-small btn-floating tooltipped" style="margin:10px" data-tooltip="Valider"
+           onclick="addColumn()" href="#!">
+            <i class="material-icons">check</i></a>
+    </div>
+</div>
 
-<!--  popup-->
-
-<div class="row">
-    <div class="col s4 offset-s4">
-        <div class="card col s4 " id="popupCharger">
-            <div class="card-content">
-                <span class="card-title">Charger mon fichier carte</span>
-                <input accept=".csv" id="csvFileInput" name="selectedFile[]" onchange="uploadFile(this.files)"
-                       type="file"/>
-                <a class="right btn-small btn-floating tooltipped" data-position="bottom" data-tooltip="Fermer"
-                   onclick="endLoad()">
-                    <i class="material-icons">check</i></a>
-                <output id="selectedFile"></output>
+<!-- Modal Load File  -->
+<div id="LoadFileModal" class="modal">
+    <div class="modal-content">
+        <h4>Charger mon fichier carte</h4>
+        <div class="modal-footer">
+            <div class="row valign-wrapper">
+                <div class="file-field input-field col s8">
+                    <div class="btn">
+                        <span>Parcourir</span>
+                        <input type="file" id="csvFileInput" accept=".csv" name="selectedFile[]" onchange="SelectFile(this.files)">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Charger un fichier carte (.CSV)">
+                    </div>
+                    <!--        <input type="file" id="csvFileInput" class="left" accept=".csv" name="selectedFile[]" onchange="SelectFile(this.files)"/>-->
+                    <!--        <output id="selectedFile"></output>-->
+                </div>
+                <div class="col s4">
+                    <a class="modal-close btn-small btn-floating red tooltipped" href="#!" data-position="bottom" data-tooltip="Annuler">
+                        <i class="material-icons">close</i></a>
+                    <a class="modal-close btn-small btn-floating tooltipped" href="#!" data-position="bottom" data-tooltip="Accepter">
+                        <i class="material-icons" onclick="UploadFile()">check</i></a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<div class="row">
-    <div class="col s4 offset-s4">
-        <div class="card col s4 " id="addColumnDiv">
-            <div class="card-content">
-                <label for="newColumnName">Nom de la colonne</label>
-                <div class="input-field"><input  id="newColumnName" type="text" class="validate"></div>
-                <a class="right btn-small btn-floating tooltipped" style="margin:10px" data-tooltip="Valider"
-                   onclick="addColumn()">
-                    <i class="material-icons">check</i></a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 
 <!--  Scripts-->
 <!-- 3rd party Scripts-->
@@ -325,6 +330,6 @@
 <script src="scripts/main.js"></script>
 <script src="scripts/filters.js"></script>
 <script src="scripts/boxes.js"></script>
-<script src="scripts/tools.js"></script>
+<script src="scripts/pointEditor.js"></script>
 </body>
 </html>
