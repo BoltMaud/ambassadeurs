@@ -9,4 +9,6 @@ $(document).ready(function(){
   $('.parallax').parallax();
   // Init modals
   $('.modal').modal();
+  // init tooltips
+  $('.tooltipped').tooltip();
 });

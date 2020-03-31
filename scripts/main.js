@@ -107,8 +107,3 @@ function goToTab(tab) {
     var instance = M.Tabs.getInstance(tabs);
     instance.select(tab);
 }
-
-// ---------------------------------------------------------------
-  $(document).ready(function(){
-    $('.tooltipped').tooltip();
-  });
