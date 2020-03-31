@@ -18,8 +18,8 @@
     <nav class="nav-extended red">
             <a class="brand-logo right" href="#!"><i class="medium material-icons">explore</i>Ma carte d'île-de-France</a>
             <a class="sidenav-trigger" data-target="mobile-demo" href="#"><i class="material-icons">menu</i></a>
-            <ul class="tabs tabs-transparent hide-on-med-and-down">
-                <li class="tab red"><a class="active" href="#home"><i class="material-icons left">home</i>Accueil</a></li>
+            <ul id="tabList" class="tabs tabs-transparent hide-on-med-and-down">
+                <li class="tab red"><a href="#home" class="active"><i class="material-icons left">home</i>Accueil</a></li>
                 <li class="tab red"><a href="#tuto"><i class="material-icons left">assignment</i>Tutoriel</a></li>
                 <li class="tab red"><a href="#map" onclick="startouille()"><i class="material-icons left">map</i>Ma carte</a></li>
                 <li class="tab red"><a href="#pointEditor" onclick="fillTable()"><i class="material-icons left">edit_location</i>Mes points</a></li>
@@ -35,17 +35,17 @@
 </ul>
 
 <!-- HOME -->
-<div class="" id="home">
+<div id="home">
     <div id="index-banner" class="parallax-container">
         <div class="section no-pad-bot">
             <div class="container">
                 <br><br>
                 <h1 class="header center white-text ">Ma carte d'île-de-France</h1>
                 <div class="row center">
-                    <h5 class="header col s12  white-text "> Créer sa carte personnalisée d'île de France, prendre le temps de redécouvrir sa région </h5>
+                    <h5 class="header col s12 white-text "> Créer sa carte personnalisée d'île-de-France, prendre le temps de redécouvrir sa région </h5>
                 </div>
                 <div class="row center">
-                    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large red">Voir l'exemple</a>
+                    <a href="#" onclick='goToTab("map")' id="download-button" class="btn-large red">Voir l'exemple</a>
                 </div>
                 <br><br>
 

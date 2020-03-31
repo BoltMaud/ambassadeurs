@@ -98,6 +98,15 @@ function updatesBoxesAndMapDueToFilter(){
     updateDataInMap(mydata);
 }
 
+/***
+ * Use this function on onclick attributes to go to a specific tab
+ * @param {string} tab   The ID of the tab to go to
+ */
+function goToTab(tab) {
+    var tabs = document.getElementById("tabList");
+    var instance = M.Tabs.getInstance(tabs);
+    instance.select(tab);
+}
 
 // ---------------------------------------------------------------
   $(document).ready(function(){
