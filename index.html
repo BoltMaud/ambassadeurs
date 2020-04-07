@@ -22,7 +22,7 @@
                 <li class="tab red"><a href="#home" class="active"><i class="material-icons left">home</i>Accueil</a></li>
                 <li class="tab red"><a href="#tuto"><i class="material-icons left">assignment</i>Tutoriel</a></li>
                 <li class="tab red"><a href="#map" onclick="startouille()"><i class="material-icons left">map</i>Ma carte</a></li>
-                <li class="tab red"><a href="#pointEditor" onclick="fillTable()"><i class="material-icons left">edit_location</i>Mes points</a></li>
+                <li class="tab red"><a href="#pointEditor" onclick="startouille()"><i class="material-icons left">edit_location</i>Mes points</a></li>
             </ul>
     </nav>
 </div>
@@ -243,7 +243,7 @@
         <nav class="white">
             <div class="nav-content">
                 <!-- Map Title -->
-                <a class="brand-logo right red-text">Laboratoires publiques</a>
+                <a class="brand-logo right red-text" id="maptitle" >Laboratoires publiques</a>
                 <div class="row">
                     <!-- Filter selector -->
                     <div class="col s4">
@@ -289,7 +289,7 @@
             <div class="container ">
                 <div class="input-field ">
                     <i class="material-icons prefix">mode_edit</i>
-                    <input  id="newTitle" type="text" class="validate" >
+                    <input  id="newTitle" type="text" class="validate" onchange="changeTitle(this.value)" value="Laboratoires publiques">
                     <label for="newTitle">Titre de la carte</label>
                 </div>
                 <div class="right">

@@ -61,3 +61,7 @@ td, th{
 #inputDataInTable{
    background-color:#fafafa;
 }
+.inputRowTd{
+   background-color:white !important;
+   border-radius: 3px !important;
+}
