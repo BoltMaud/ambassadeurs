@@ -150,7 +150,11 @@ function addPoint(){
     let columns=mydata["columns"];
     var newPoint={};
     for (c in columns){
-        newPoint[columns[c]]=document.getElementById("new"+columns[c]).value;
+        if (columns[c]=="Latitude" || columns[c]=="Longitude"){
+           newPoint[columns[c]]=document.getElementById("new"+columns[c]).value.replace(",",".");
+        }else {
+            newPoint[columns[c]]=document.getElementById("new"+columns[c]).value;
+        }
         document.getElementById("new"+columns[c]).value="";
     }
     mydata.push(newPoint);
