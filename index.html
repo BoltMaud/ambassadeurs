@@ -22,7 +22,7 @@
                 <li class="tab red"><a href="#home" class="active"><i class="material-icons left">home</i>Accueil</a></li>
                 <li class="tab red"><a href="#tuto"><i class="material-icons left">assignment</i>Tutoriel</a></li>
                 <li class="tab red"><a href="#map" onclick="startouille()"><i class="material-icons left">map</i>Ma carte</a></li>
-                <li class="tab red"><a href="#pointEditor" onclick="fillTable()"><i class="material-icons left">edit_location</i>Mes points</a></li>
+                <li class="tab red"><a href="#pointEditor" onclick="startouille()"><i class="material-icons left">edit_location</i>Mes points</a></li>
             </ul>
     </nav>
 </div>
@@ -106,11 +106,36 @@
     <div class="container border-bottom">
         <br><br>
         <h2 class="header ">Faire ma carte en 5 étapes</h2>
+        <span style="color:grey;font-size:9pt"><i>Nous publions les cartes que vous nous envoyez. Une surprise pour le premier!</i></span>
     </div>
     <div class="container">
         <div class="row">
             <div class="col s12 ">
                 <h4><i class="medium material-icons red-text left">filter_1</i> Ce qu'il faut savoir avant de faire sa carte</h4>
+                <div class="row">
+                    <div class="col s8" style="text-align: justify;">
+                        <p> Pour positionner des points sur une carte, on utilise des coordonnées géographique qui sont la <b>longitude</b> et la <b>latitude</b></p>
+                        <img alt="source:https://fr.wikipedia.org/wiki/Coordonn%C3%A9es_g%C3%A9ographiques#/media/Fichier:Latitude_and_Longitude_of_the_Earth_fr.svg" src="./resources/img/test2.png" style="max-width:750px;width:100%">
+
+                        <p>La <b>longitude</b> nous indique si un point est à l'OUEST ou à l'EST du globe par rapport au
+                            <i>méridien de Greenwich</i>. Ce repère, situé en Angleterre, définit la longitude 0°.
+                        Les points à l'EST ont une longitude entre 0° et 180° tandis qu'à l'OUEST, la longitude est négative jusqu'à -180°.
+
+                        <p>
+                            La <b>latitude</b> nous indique si un point est au NORD ou au SUD par rapport à l'équateur.
+                            L'équateur définit la latitude 0°. La latitude est entre 0° et 180° pour le NORD et descends jusqu'à -180° pour le SUD.
+                        </p>
+                        <br>
+                        <h5 style="color:#F44336">Exemple:</h5>
+                        <p>
+                            Lisbonne se trouve à l'OUEST du <i>méridien de Greenwich</i>. Sa longitude est alors inférieure à 0°. En effet, la
+                        longitude de Lisbonne est -9,13°.
+                            Lisbonne est bien au NORD de l'équateur. Sa latitude est alors supérieure à 0°. En effet, la longitude de Lisbonne
+                        est 38.70°.
+                        </p>
+
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -118,14 +143,45 @@
         <div class="row">
             <div class="col s12 ">
                 <h4><i class="medium material-icons red-text left">filter_2</i> Créer une carte vierge</h4>
-
+                <div class="row">
+                    <div class="col s8" style="text-align: justify;">
+                    <p>
+                    Lorsque vous cliquez sur l'onglet <b style="color:#F44336">MA CARTE</b>, un ensemble de points
+                    s'affiche. C'est la carte des <i><b>Laboratoires d'île de France</b></i>. Cette carte est un exemple.
+                    </p>
+                        <p>
+                           Pour commencer votre carte, allez dans l'onglet  <b style="color:#F44336">MES POINTS</b> et
+                            cliquez sur la poubelle
+                            <a class="btn-small btn-floating black tooltipped"
+                                                       data-position="bottom" data-tooltip="Supprimer pour recommencer">
+                            <i class="material-icons">delete</i></a> pour supprimer les points existants
+                            et commencer votre carte!
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col s12 ">
                 <h4><i class="medium material-icons red-text left">filter_3</i> Ajouter des points</h4>
+                <div class="row">
+                    <div class="col s8" style="text-align: justify;">
+                        <p>
+                            Trois élements sont essentiels pour ajouter des points sur votre carte: un <b>nom unique</b> (identifiant), une <b>longitude</b> et une <b>latitude</b>. Cependant
+                            vous avez la possibilité d'ajouter des informations suppémentaires à l'aide du bouton
+                            <a class="btn-small btn-floating black tooltipped modal-trigger" data-position="bottom" data-tooltip="Ajouter une colonne"> <i class="material-icons" style="transform:rotate(-90deg)">playlist_add</i></a>.
+                        </p>
+                        <h5 style="color:#F44336">Comment trouver les coordonnées des points?</h5>
+                        <p>
+                            De nombreux sites donnent les coordonnées géographiques grâce à l'adresse. Vous pouvez utiliser par exemple :<br> </p>
+                            <ul style="padding-left:40px;" >
+                                <li style="list-style-type:square">https://www.coordonnees-gps.fr/</li>
+                                <li style="list-style-type:square">https://gps-coordinates.org/</li>
+                            </ul>
 
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -133,14 +189,44 @@
         <div class="row">
             <div class="col s12 ">
                 <h4><i class="medium material-icons red-text left">filter_4</i> Visualiser et filtrer</h4>
+                <div class="row">
+                    <div class="col s8" style="text-align: justify;">
+                        <p>
+                        Une fois que vous avez rentré un certain nombre de points, vous pouvez visualiser votre carte en cliquant directement
+                        sur l'onglet <b style="color:#F44336">MA CARTE</b>.
+                        </p>
+                        <p>
+                            Vous pouvez filter les resultats en fonction des colonnes que vous avez enregistré!
+                        </p>
+                        <img src="./resources/img/resultatstuto.png" style="max-width:750px;width:100%">
 
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col s12 ">
                 <h4><i class="medium material-icons red-text left">filter_5</i> Enregistrer et recharger</h4>
+                <div class="row">
+                    <div class="col s8" style="text-align: justify;">
+                        <p>Attention, nous ne stockons aucune donnée que vous enregistrez. Pour garder vos données,
+                            il faut <i><b>enregistrer vos points</b></i> en cliquant sur
+                            <a class="btn-small btn-floating red tooltipped" data-position="bottom" data-tooltip="Enregistrer mon fichier carte">
+                                <i class="material-icons">save</i></a>. Un fichier <b>carte.csv</b> est alors généré.
+                        </p>
+                        <p>
+                            Pour charger vos anciens points, utilisez le bouton
+                            <a class="btn-small btn-floating red tooltipped modal-trigger" data-position="bottom" data-tooltip="Charger un fichier carte" ><i class="material-icons">file_download</i></a>
+                            et selectionnez votre fichier <b>carte.csv</b>.
+                        </p>
 
+                    </div>
+                </div>
+                <h5 style="color:#F44336">Bravo! Vous enrichissez notre région en créant des cartes de bonnes adresses!</h5>
+                <p>
+                    Si vous souhaitez que votre carte soit disponible sur ce site web, veuillez l'envoyer à l'adresse : <a>ma-carte-d-ile-de-france@outlook.com</a>.
+                </p>
 
             </div>
         </div>
@@ -157,7 +243,7 @@
         <nav class="white">
             <div class="nav-content">
                 <!-- Map Title -->
-                <a class="brand-logo right red-text">Laboratoires publiques</a>
+                <a class="brand-logo right red-text" id="maptitle" >Laboratoires publiques</a>
                 <div class="row">
                     <!-- Filter selector -->
                     <div class="col s4">
@@ -203,7 +289,7 @@
             <div class="container ">
                 <div class="input-field ">
                     <i class="material-icons prefix">mode_edit</i>
-                    <input  id="newTitle" type="text" class="validate" >
+                    <input  id="newTitle" type="text" class="validate" onchange="changeTitle(this.value)" value="Laboratoires publiques">
                     <label for="newTitle">Titre de la carte</label>
                 </div>
                 <div class="right">
@@ -260,19 +346,23 @@
                 <ul>
                     <li>Créateur: Mathilde Boltenhagen</li>
                     <li>Aide technique: Arthur Scheidel</li>
-                    <li>Conseils: Louise Chancelier</li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="footer-copyright grey darken-3">
         <div class="container">
-            <a href="#contact"><i class="material-icons left">alternate_email</i> email </a>
+            <a href="#contact"><i class="material-icons left">alternate_email</i> ma-carte-d-ile-de-france@outlook.com </a>
         </div>
     </div>
     <div class="footer-copyright grey darken-4">
         <div class="container">
-            Made with <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            Made with <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a><br>
+            Images: <a class="grey-text text-lighten-3" href="https://pxhere.com/fr/photo/1366342">Fond</a>,
+            <a class="grey-text text-lighten-3" href="https://fr.wikipedia.org/wiki/Coordonn%C3%A9es_g%C3%A9ographiques#/media/Fichier:Latitude_and_Longitude_of_the_Earth_fr.svg">Globe Longitude/Latitude</a>
+            <br>Données des laboratoires: <a class="grey-text text-lighten-3" href="https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-structures-recherche-publiques-actives/table/?disjunctive.numero_national_de_structure&disjunctive.tutelles
+">Structures de recherches publiques actives</a>,
+            <a class="grey-text text-lighten-3" href="https://data.iledefrance.fr/explore/dataset/entites-constituant-les-domaines-dinteret-majeur-labellises/information">Domaines d'interêt majeur</a>
         </div>
     </div>
 </footer>

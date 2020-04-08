@@ -29,7 +29,7 @@ function exportFile(){
     var encodedUri = encodeURI(csvContent);
     var link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "my_data.csv");
+    link.setAttribute("download", "carte.csv");
     document.body.appendChild(link); // Required for FF
     link.click();
 }
@@ -96,6 +96,11 @@ function fillTable(){
     }
     $('.tooltipped').tooltip();
 }
+
+function changeTitle(value){
+    document.getElementById("maptitle").innerHTML=value;
+
+}
 function setHeader(columns){
     document.getElementById("headerOfTableOfPoints").innerHTML="";
     document.getElementById("inputDataInTable").innerHTML="";
@@ -109,7 +114,7 @@ function setHeader(columns){
         document.getElementById("headerOfTableOfPoints").appendChild(newColumn);
 
         var newField = document.createElement("td");
-        newField.innerHTML=' <div class="input-field"><input  id="new'+columns[c]+'" type="text" class="validate"></div>'
+        newField.innerHTML=' <div class="input-field"><input class="inputRowTd"  id="new'+columns[c]+'" type="text" class="validate"></div>'
         document.getElementById("inputDataInTable").appendChild(newField);
     }
     var addButton = document.createElement("td");
@@ -146,7 +151,11 @@ function addPoint(){
     let columns=mydata["columns"];
     var newPoint={};
     for (c in columns){
-        newPoint[columns[c]]=document.getElementById("new"+columns[c]).value;
+        if (columns[c]=="Latitude" || columns[c]=="Longitude"){
+           newPoint[columns[c]]=document.getElementById("new"+columns[c]).value.replace(",",".");
+        }else {
+            newPoint[columns[c]]=document.getElementById("new"+columns[c]).value;
+        }
         document.getElementById("new"+columns[c]).value="";
     }
     mydata.push(newPoint);
@@ -172,7 +181,13 @@ function addColumn(){
         }
     }
     document.getElementById("newColumnName").value="";
-    console.log();
+    fillTable();
+}
+
+function removeColumn(name){
+    const index = mydata["columns"].indexOf(name);
+    mydata["columns"].splice(index, 1);
+    $('.tooltipped').tooltip();
     fillTable();
 }
 

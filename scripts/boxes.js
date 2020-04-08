@@ -52,7 +52,7 @@ function displayBox(item){
 
     cardContent.innerHTML += "<ul>";
     for (j in item){
-        if (j!="Identifiant" && j!="Latitude" && j!="Longitude"){
+        if (j!="Identifiant" && j!="Latitude" && j!="Longitude" && mydata["columns"].indexOf(j)!=-1){
             cardContent.innerHTML+="<li>"+j+" : "+  item[j]+"</li>";
         }
     }
