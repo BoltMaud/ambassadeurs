@@ -18,7 +18,7 @@ function initMap() {
     macarte = L.map('carte').setView([lat, lon], 8.5);
 
     // background of the map
-    L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: ' © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - <a href="//openstreetmap.fr">OSM France</a>',
                         minZoom: 7,
                         maxZoom: 12,
