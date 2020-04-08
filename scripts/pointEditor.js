@@ -90,7 +90,7 @@ function fillTable(){
                 document.getElementById("trLine"+mydata[m]["Identifiant"]).appendChild(newTd);
             }
             var newTd=document.createElement("td");
-            newTd.innerHTML='<a class="btn-small btn-floating black tooltipped" data-position="bottom" data-tooltip="Supprimer ce point" onclick="removePoint(\'trLine'+mydata[m]["Identifiant"]+'\')"><i class="material-icons">delete</i>';
+            newTd.innerHTML='<a class="btn-small btn-floating black tooltipped" data-position="bottom" data-tooltip="Supprimer ce point" onclick="removePoint(\'trLine'+mydata[m]["Identifiant"]+'\')"><i class="material-icons">close</i>';
             document.getElementById("trLine"+mydata[m]["Identifiant"]).appendChild(newTd);
         }
     }
@@ -104,7 +104,7 @@ function setHeader(columns){
         newColumn.innerHTML=columns[c];
         if (columns[c]!= "Identifiant" && columns[c]!="Latitude" && columns[c]!="Longitude"){
             newColumn.innerHTML+="<br>";
-            newColumn.innerHTML+='<a class="btn-small  btn-floating black tooltipped" data-position="bottom" data-tooltip="Supprimer la colonne" onclick="removeColumn(\''+columns[c]+'\')"><i class="tiny material-icons">delete</i>';
+            newColumn.innerHTML+='<a class="btn-small  btn-floating black tooltipped" style="display: none" data-position="bottom" data-tooltip="Supprimer la colonne" onclick="removeColumn(\''+columns[c]+'\')"><i class="tiny material-icons">close</i>';
         }
         document.getElementById("headerOfTableOfPoints").appendChild(newColumn);
 
@@ -117,7 +117,8 @@ function setHeader(columns){
     document.getElementById("inputDataInTable").appendChild(addButton);
 
     var addButton = document.createElement("td");
-    addButton.innerHTML='<a class="btn-small btn-floating black tooltipped modal-trigger" data-position="bottom" data-tooltip="Ajouter une colonne" href="#NewColModal"> <i class="material-icons" style="transform:rotate(-90deg)">playlist_add</i></a>';
+    addButton.innerHTML='<a class="btn-small btn-floating red tooltipped modal-trigger" data-position="bottom" data-tooltip="Ajouter une colonne" href="#NewColModal"> <i class="material-icons" style="transform:rotate(-90deg)">playlist_add</i></a>';
+    addButton.innerHTML+='<a class="btn-small btn-floating black tooltipped" data-position="bottom" data-tooltip="Supprimer une colonne" onclick="setColDeleteBtnVisible()"> <i class="material-icons">delete</i></a>';
     document.getElementById("headerOfTableOfPoints").appendChild(addButton);
 }
 
@@ -175,3 +176,10 @@ function addColumn(){
     fillTable();
 }
 
+function setColDeleteBtnVisible() {
+    var trashes = document.querySelectorAll('#headerOfTableOfPoints th a');
+    trashes.forEach(t => {
+        var trashStyle = t.style;
+        trashStyle.display === "none" ? trashStyle.display = "block" : trashStyle.display = "none";
+    })
+}

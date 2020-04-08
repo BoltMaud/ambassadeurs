@@ -11,4 +11,7 @@ $(document).ready(function(){
   $('.modal').modal();
   // init tooltips
   $('.tooltipped').tooltip();
+  // init scrollspy for markers to boxes scrolling
+
 });
+

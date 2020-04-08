@@ -13,27 +13,26 @@ var firstTime=true;//temporaire
 // data of Labs
 function startouille(){
 if (firstTime){
-    var dataPromise = d3.queue()
+    let dataPromise = d3.queue()
         .defer(d3.tsv, "data.csv")
         .defer(d3.json, "resources/data/departements-ile-de-france.geojson")
         .defer(d3.json, "resources/data/iledeFrance.geojson")
-        .await(function(error, data, ileDeFrance,Region) {
+        .await(function (error, data, ileDeFrance, Region) {
             if (error) {
                 console.error('Oh dear, something went wrong: ' + error);
-            }
-            else {
+            } else {
                 geoJsonFrance = ileDeFrance;
-                region=Region
-                const p2 = new Promise(function(resolve, reject) {
+                region = Region;
+                const p2 = new Promise(function (resolve, reject) {
                     // columns
                     dataProcess(data);
-                    });
+                });
                 // create boxes and dots
                 p2.then(startMapBoxes());
 
             }
         });
-        firstTime=false;
+    firstTime=false;
     }
    else{
     updatesBoxesAndMapDueToFilter();

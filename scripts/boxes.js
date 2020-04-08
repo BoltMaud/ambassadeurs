@@ -17,15 +17,17 @@ function displayFirst(d){
  * create the html boxe of the item
  */
 function displayBox(item){
-    var boxRow = document.createElement("div");
-    boxRow.classList.add("row");
-    boxRow.id=item["Identifiant"];
-    document.getElementById("results").appendChild(boxRow);
-
     var boxCol = document.createElement("div");
     boxCol.classList.add("col");
     boxCol.classList.add("s12");
-    boxRow.appendChild(boxCol);
+    document.getElementById("results").appendChild(boxCol);
+
+    var boxScrollSpy = document.createElement("a");
+    boxScrollSpy.id=item["Identifiant"].replace(/\W/g,'_');
+    boxScrollSpy.classList.add("section");
+    boxScrollSpy.classList.add("scrollspy");
+    boxScrollSpy.classList.add("anchor");
+    boxCol.appendChild(boxScrollSpy);
 
     var boxCard = document.createElement("div");
     boxCard.classList.add("card");
@@ -34,9 +36,10 @@ function displayBox(item){
 
     var boxBtn = document.createElement("a");
     boxBtn.classList.add("waves-effect");
-    boxBtn.classList.add("waves-teal");
+    boxBtn.classList.add("waves-red");
     boxBtn.classList.add("btn-flat");
     boxBtn.classList.add("card-btn");
+    boxBtn.setAttribute("onclick", `selectMarkerFromCard(\'${item["Identifiant"].replace(/\W/g,'_')}\')`);
     boxCard.appendChild(boxBtn);
 
     var cardContent = document.createElement("div");
