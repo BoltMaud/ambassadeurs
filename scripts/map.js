@@ -44,7 +44,7 @@ function updateDataInMap(data){
     // remove existing makers
     if (markers!= null ) {markers.clearLayers();}
     // personnal marker icon
-    var myIcon = L.icon({
+    let myIcon = L.icon({
             iconUrl: "./resources/img/map-marker-icon.png",
             iconSize: [40, 40],
             iconAnchor: [25, 50],
@@ -53,29 +53,41 @@ function updateDataInMap(data){
     // create the group of markers (to remove them easly)
     markers= L.layerGroup().addTo(macarte);
     // add all the dots
-    for( d in data){
+    for(let d in data){
         if (d!=="columns"){
             // only the one that are validated by the filters
             if (filterAcceptThisItem(mydata[d])){
-                var dataD = data[d];
-                var title = dataD["Identifiant"];
-                var id = title.replace(/\W/g,'_');
-                var found=false;
+                let dataD = data[d];
+                let title = dataD["Identifiant"];
+                let id = title.replace(/\W/g,'_');
+                let found=false;
                 // some markers have the same coordinates
-                for (m in markers._layers){
-                    if (markers._layers[m]._latlng["Longitude"]==dataD["Latitude"] && markers._layers[m]._latlng["lat"]==dataD["lng"]){
+                for (let m in markers._layers){
+                    if (markers._layers[m]._latlng["lat"] == dataD["Latitude"] && markers._layers[m]._latlng["lng"] == dataD["Longitude"]){
                         // add content to existing point (same coordinates)
-                        markers._layers[m]._popup._content+="<br>"+title;
+                        // if first time add a class and a <li> around element, if not just create the next <li>
+                        let markerPopupContentStr = markers._layers[m]._popup._content;
+                        if (markerPopupContentStr[4] === '>') {
+                            // first time
+                            let newContent = `<li><a href="#${id}" onclick="selectCardFromMarker(\'${id}\')">` + markerPopupContentStr.slice(5,markerPopupContentStr.length - 4)
+                                + "a></li>";
+
+                            markers._layers[m]._popup._content = newContent;
+                        }
+                        else {
+                            markers._layers[m]._popup._content+=`<li><a href="#${id}" onclick="selectCardFromMarker(\'${id}\')">${title}</a></li>`;
+                        }
+
                         found=true;
                         break;
                     }
                 }
                 if (! found){
                     // new point
-                    var marker = L.marker([dataD["Latitude"],dataD["Longitude"] ], { icon: myIcon }).addTo(markers);
+                    let marker = L.marker([dataD["Latitude"],dataD["Longitude"] ], { icon: myIcon }).addTo(markers);
                     marker._icon.classList.add("marker");
                     // wrap marker in a link element <a>
-                    var wrapperA = document.createElement('a');
+                    let wrapperA = document.createElement('a');
                     wrapperA.setAttribute("href", `#${id}`);
                     wrapperA.setAttribute("onclick", `selectCardFromMarker(\'${id}\')`);
 
@@ -94,6 +106,8 @@ function updateDataInMap(data){
             }
         }
     }
+    //TODO: insert <ul> for each markers with <li>
+
     // var wrapperUl = document.createElement('ul');
     // let listElement0 = $(".marker-li")[0];
     // listElement0.parentNode.insertBefore(wrapperUl, listElement0);
