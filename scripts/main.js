@@ -9,12 +9,13 @@ var geoJsonFrance;
 // data of the CSV
 var mydata=null;
 var firstTime=true;//temporaire
-
+var changeName=true;
+var fileToLoad = "project_data/data.csv";
 // data of Labs
 function startouille(){
 if (firstTime){
     let dataPromise = d3.queue()
-        .defer(d3.tsv, "data.csv")
+        .defer(d3.tsv, fileToLoad)
         .defer(d3.json, "resources/data/departements-ile-de-france.geojson")
         .defer(d3.json, "resources/data/iledeFrance.geojson")
         .await(function (error, data, ileDeFrance, Region) {
@@ -35,7 +36,27 @@ if (firstTime){
     firstTime=false;
     }
    else{
+     if (changeName){
+        let dataPromise = d3.queue()
+            .defer(d3.tsv, fileToLoad)
+            .await(function (error, data) {
+                        if (error) {
+                            console.error('Oh dear, something went wrong: ' + error);
+                        } else {
+                            const p2 = new Promise(function (resolve, reject) {
+                                // columns
+                                dataProcess(data);
+                            });
+                            // create boxes and dots
+                            p2.then(updatesBoxesAndMapDueToFilter());
+
+                        }
+                    });
+                    changeName=false;
+   }
+   else {
     updatesBoxesAndMapDueToFilter();
+    }
    }
 }
 
@@ -105,4 +126,10 @@ function goToTab(tab) {
     var tabs = document.getElementById("tabList");
     var instance = M.Tabs.getInstance(tabs);
     instance.select(tab);
+}
+
+function changeFileToLoad(name){
+    fileToLoad=name;
+    changeName=true;
+    goToTab("map");
 }

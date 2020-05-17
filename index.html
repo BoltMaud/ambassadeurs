@@ -24,6 +24,8 @@
                 <li class="tab red"><a href="#tuto"><i class="material-icons left">assignment</i>Tutoriel</a></li>
                 <li class="tab red"><a href="#map" onclick="startouille()"><i class="material-icons left">map</i>Ma carte</a></li>
                 <li class="tab red"><a href="#pointEditor" onclick="startouille()"><i class="material-icons left">edit_location</i>Mes points</a></li>
+                <li class="tab red"><a href="#actudescartes"><i class="material-icons left">local_florist</i>Découvrir des cartes</a></li>
+
             </ul>
     </nav>
 </div>
@@ -33,6 +35,7 @@
     <li><a href="#tuto"><i class="material-icons left">assignment</i>Tutoriel</a></li>
     <li><a href="#map" onclick="startouille()"><i class="material-icons left">map</i>Ma carte</a></li>
     <li><a href="#pointEditor" onclick="fillTable()"><i class="material-icons left">edit_location</i>Mes points</a></li>
+    <li><a href="#actudescartes"><i class="material-icons left">local_florist</i>Découvrir des cartes</a></li>
 </ul>
 
 <!-- HOME -->
@@ -330,6 +333,50 @@
     <i style="color:grey;"> Confidentialité: les informations rentrées sont uniquement stockées sur votre navigateur, nous n'y avons pas accès.</i>
     <!-- Modal Trigger -->
 </div>
+
+<!-- LES CARTES -->
+<div class="col s12" id="actudescartes">
+    <div class="container border-bottom">
+        <br><br>
+        <span style="color:grey;font-size:12pt"><i> Voici une belle liste de cartes, faites par des utilisateurs, pour votre plus grand plaisir. Parcourez différents types de projets,
+            inspirez vous pour faire votre propre carte ou simplement découvrir de nouveaux lieux. </i></span>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col s4 ">
+                <div class="card hoverable grey lighten-3">
+                    <a href="#map" class="waves-effect waves-red btn-flat card-btn"  onclick="changeFileToLoad('project_data/stucoco.csv')">
+                        <div class="card-content"><span class="card-title">
+                        <h6>STUCOCO</h6></span>
+                           <span style="color:grey;font-size:10pt"> Stucoco is a platform for students to discover and share the cultural contents that matter to them.
+                            <br><br>
+                            Find the map of Stucoco!</span>
+                            <br>
+                            <div class="card-action" style="padding-left:0px !important">
+                                http://stucoco.fr/</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col s4 ">
+                <div class="card hoverable grey lighten-3">
+                    <a class="waves-effect waves-red btn-flat card-btn" onclick="changeFileToLoad('project_data/data.csv')">
+                        <div class="card-content"><span class="card-title">
+                        <h6>Laboratoire d'île de France</h6></span>
+                            <span style="color:grey;font-size:10pt">
+                                Vous souhaitez avoir une vue des laboratoires d'île de France ? C'est par ici!
+                            </span>
+                            <div class="card-action" style="padding-left:0px !important">
+                                C'est l'exemple du site!</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <footer class="page-footer grey darken-2">
     <div class="container ">
         <div class="row">
