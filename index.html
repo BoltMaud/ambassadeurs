@@ -3,11 +3,13 @@
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1.0" name="viewport"/>
-    <title>Ma Carte d'Ile de France</title>
+    <title data-i18n="title"></title>
     <link href="resources/img/iledefrance.png" rel="shortcut icon">
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/0.0.14/i18next-jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/2.0.22/i18next.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="materialize/css/materialize.css" media="screen,projection" rel="stylesheet" type="text/css"/>
     <link crossorigin="" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" rel="stylesheet"/>
     <link href="resources/css/dataviz_style.css" media="screen,projection" rel="stylesheet" type="text/css"/>
@@ -30,25 +32,36 @@
 <!-- Navbar -->
 <div class="navbar-fixed">
     <nav class="nav-extended red">
-            <a class="brand-logo right" href="#!"><i class="medium material-icons">explore</i>Ma carte d'île-de-France</a>
+        <div class="brand-logo right ">
+
+            <a  href="#!"><i class="medium material-icons">explore</i><span data-i18n="title"></span></a>
+                <!-- Dropdown Trigger-->
+            <a class='dropdown-trigger btn-floating btn-large grey darken-4 btn' href='#' data-target='dropdown1'><span class="white-text" id="lng"></span></a>
+
+                <ul id='dropdown1' class='dropdown-content  text-black'>
+                    <li><a  href="#" class="lang-select" >EN</a></li>
+                    <li><a  href="#" class="lang-select" >FR</a></li>
+                </ul>
+        </div>
+
             <a class="sidenav-trigger" data-target="mobile-demo" href="#"><i class="material-icons">menu</i></a>
             <ul id="tabList" class="tabs tabs-transparent hide-on-med-and-down">
-                <li class="tab red"><a href="#home" class="active"><i class="material-icons left">home</i>Accueil</a></li>
-                <li class="tab red"><a href="#tuto"><i class="material-icons left">assignment</i>Tutoriel</a></li>
-                <li class="tab red"><a href="#map" onclick="startouille()"><i class="material-icons left">map</i>Ma carte</a></li>
-                <li class="tab red"><a href="#pointEditor" onclick="startouille()"><i class="material-icons left">edit_location</i>Mes points</a></li>
-                <li class="tab red"><a href="#actudescartes"><i class="material-icons left">local_florist</i>Découvrir des cartes</a></li>
+                <li class="tab red"><a href="#home" class="active"><i class="material-icons left">home</i><span data-i18n="AccueilofNav"></span></a></li>
+                <li class="tab red"><a href="#tuto"><i class="material-icons left">assignment</i><span data-i18n="TutorielofNav"></span></a></li>
+                <li class="tab red"><a href="#map" onclick="startouille()"><i class="material-icons left">map</i><span data-i18n="MymapofNav"></span></a></li>
+                <li class="tab red"><a href="#pointEditor" onclick="startouille()"><i class="material-icons left">edit_location</i><span data-i18n="MyplacesofNav"></span></a></li>
+                <li class="tab red"><a href="#actudescartes"><i class="material-icons left">local_florist</i><span data-i18n="DiscoverOfNav"></span></a></li>
 
             </ul>
     </nav>
 </div>
 <!-- Menu sur mobile -->
 <ul class="sidenav" id="mobile-demo">
-    <li><a href="#map"><i class="material-icons left">home</i>Accueil</a></li>
-    <li><a href="#tuto"><i class="material-icons left">assignment</i>Tutoriel</a></li>
-    <li><a href="#map" onclick="startouille()"><i class="material-icons left">map</i>Ma carte</a></li>
-    <li><a href="#pointEditor" onclick="fillTable()"><i class="material-icons left">edit_location</i>Mes points</a></li>
-    <li><a href="#actudescartes"><i class="material-icons left">local_florist</i>Découvrir des cartes</a></li>
+    <li><a href="#map"><i class="material-icons left">home</i><span data-i18n="AccueilofNav"></span></a></li>
+    <li><a href="#tuto"><i class="material-icons left">assignment</i><span data-i18n="TutorielofNav"></span></a></li>
+    <li><a href="#map" onclick="startouille()"><i class="material-icons left">map</i><span data-i18n="MymapofNav"></span></a></li>
+    <li><a href="#pointEditor" onclick="fillTable()"><i class="material-icons left">edit_location</i><span data-i18n="MyplacesofNav"></span></a></li>
+    <li><a href="#actudescartes"><i class="material-icons left">local_florist</i><span data-i18n="DiscoverOfNav"></span></a></li>
 </ul>
 
 <!-- HOME -->
@@ -57,12 +70,12 @@
         <div class="section no-pad-bot">
             <div class="container">
                 <br><br>
-                <h1 class="header center white-text ">Ma carte d'île-de-France</h1>
+                <h1 class="header center white-text "><span data-i18n="title"></span></h1>
                 <div class="row center">
-                    <h5 class="header col s12 white-text "> Créer sa carte personnalisée d'île-de-France, prendre le temps de redécouvrir sa région </h5>
+                    <h5 class="header col s12 white-text "><span data-i18n="shortDescription"></span>  </h5>
                 </div>
                 <div class="row center">
-                    <a href="#" onclick='goToTab("map")' id="download-button" class="btn-large red">Voir l'exemple</a>
+                    <a href="#" onclick='goToTab("map")' id="download-button" class="btn-large red"><span data-i18n="buttonExample"></span></a>
                 </div>
                 <br><br>
 
@@ -82,31 +95,27 @@
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center red-text"><i class="material-icons">gesture</i></h2>
-                        <h5 class="center">Présentation</h5>
+                        <h5 class="center"> <span data-i18n="subtitle1"></span></h5>
                         
-                        <p class="light center"><i>Ma Carte d'île de France</i> est un outil en ligne vous permettant d'enregistrer
-                        vos points d'intérêt dans la région et les informations associées à ces points. Une fois la carte créée, un système de
-                        filtres vous permet de visualiser aisément vos adresses.</p>
+                        <p class="light center"><i><span data-i18n="title"></span></i><span data-i18n="text1"></span></p>
                     </div>
                 </div>
 
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center red-text"><i class=" medium material-icons">edit_location</i></h2>
-                        <h5 class="center">Comment ça marche ?</h5>
+                        <h5 class="center"><span data-i18n="subtitle2"></span></h5>
 
-                        <p class="light center">Trouvez un tutoriel détaillé étape par étape, accessible aux plus jeunes comme aux anciens, pour créer votre carte
-                        personnalisée d'île de France.</p>
+                        <p class="light center"><span data-i18n="text2"></span> </p>
                     </div>
                 </div>
-                
+
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center red-text"><i class="small material-icons">thumb_up</i></h2>
-                        <h5 class="center">Vos cartes !</h5>
-                        
-                        <p class="light center">Envoyez-nous vos fichiers de carte avec votre prénom par email afin de voir votre carte
-                            apparaître sur le site. Ainsi, enrichissons ensemble les bonnes adresses de la région d'île de France !
+                        <h5 class="center"><span data-i18n="subtitle3"></span></h5>
+
+                        <p class="light center"><span data-i18n="text3"></span>
                         </p>
                     </div>
                 </div>
@@ -122,33 +131,28 @@
 
     <div class="container border-bottom">
         <br><br>
-        <h2 class="header ">Faire ma carte en 5 étapes</h2>
-        <span style="color:grey;font-size:9pt"><i>Nous publions les cartes que vous nous envoyez. Une surprise pour le premier!</i></span>
+        <h2 class="header "><span data-i18n="page2Title"></span></h2>
+        <span style="color:grey;font-size:9pt"><i><span data-i18n="page2comment"></span></i></span>
     </div>
     <div class="container">
         <div class="row">
             <div class="col s12 ">
-                <h4><i class="medium material-icons red-text left">filter_1</i> Ce qu'il faut savoir avant de faire sa carte</h4>
+                <h4><i class="medium material-icons red-text left">filter_1</i><span data-i18n="page2titre1"></span> </h4>
                 <div class="row">
                     <div class="col s8" style="text-align: justify;">
-                        <p> Pour positionner des points sur une carte, on utilise des coordonnées géographique qui sont la <b>longitude</b> et la <b>latitude</b></p>
+                        <p> <span data-i18n="page2text1a"></span>  <b><span data-i18n="longitude"></span></b><span data-i18n="page2text1b"></span>  <b><span data-i18n="latitude"></span>.</b></p>
                         <img alt="source:https://fr.wikipedia.org/wiki/Coordonn%C3%A9es_g%C3%A9ographiques#/media/Fichier:Latitude_and_Longitude_of_the_Earth_fr.svg" src="./resources/img/test2.png" style="max-width:750px;width:100%">
 
-                        <p>La <b>longitude</b> nous indique si un point est à l'OUEST ou à l'EST du globe par rapport au
-                            <i>méridien de Greenwich</i>. Ce repère, situé en Angleterre, définit la longitude 0°.
-                        Les points à l'EST ont une longitude entre 0° et 180° tandis qu'à l'OUEST, la longitude est négative jusqu'à -180°.
+                        <p><b><span data-i18n="Majlongitude"></span> </b> <span data-i18n="page2text1d"></span>
 
                         <p>
-                            La <b>latitude</b> nous indique si un point est au NORD ou au SUD par rapport à l'équateur.
-                            L'équateur définit la latitude 0°. La latitude est entre 0° et 180° pour le NORD et descends jusqu'à -180° pour le SUD.
+                        <b><span data-i18n="Majlatitude"></span> </b> <span data-i18n="page2text1e"></span>
                         </p>
                         <br>
-                        <h5 style="color:#F44336">Exemple:</h5>
+                        <h5 style="color:#F44336"><span data-i18n="page2textexample"></span></h5>
                         <p>
-                            Lisbonne se trouve à l'OUEST du <i>méridien de Greenwich</i>. Sa longitude est alors inférieure à 0°. En effet, la
-                        longitude de Lisbonne est -9,13°.
-                            Lisbonne est bien au NORD de l'équateur. Sa latitude est alors supérieure à 0°. En effet, la longitude de Lisbonne
-                        est 38.70°.
+
+                            <span data-i18n="page2text2"></span>
                         </p>
 
                     </div>
@@ -159,20 +163,22 @@
 
         <div class="row">
             <div class="col s12 ">
-                <h4><i class="medium material-icons red-text left">filter_2</i> Créer une carte vierge</h4>
+                <h4><i class="medium material-icons red-text left">filter_2</i><span data-i18n="page2titre2"></span> </h4>
                 <div class="row">
                     <div class="col s8" style="text-align: justify;">
                     <p>
-                    Lorsque vous cliquez sur l'onglet <b style="color:#F44336">MA CARTE</b>, un ensemble de points
-                    s'affiche. C'est la carte des <i><b>Laboratoires d'île de France</b></i>. Cette carte est un exemple.
+                        <span data-i18n="page2text3a"></span>
+                     <b style="color:#F44336"><span data-i18n="MymapofNav"></span></b>,
+                        <span data-i18n="page2text3b"></span><i><b> <span data-i18n="page2text3c"></span></b></i>.
+                        <span data-i18n="page2text3d"></span>
                     </p>
                         <p>
-                           Pour commencer votre carte, allez dans l'onglet  <b style="color:#F44336">MES POINTS</b> et
-                            cliquez sur la poubelle
+                            <span data-i18n="page2text3e"></span>
+                            <b style="color:#F44336"><span data-i18n="MyplacesofNav"></span></b> et
+                            <span data-i18n="page2text3f"></span>
                             <a class="btn-small btn-floating black tooltipped"
                                                        data-position="bottom" data-tooltip="Supprimer pour recommencer">
-                            <i class="material-icons">delete</i></a> pour supprimer les points existants
-                            et commencer votre carte!
+                            <i class="material-icons">delete</i></a>  <span data-i18n="page2text3g"></span>
                         </p>
                     </div>
                 </div>
@@ -181,17 +187,19 @@
 
         <div class="row">
             <div class="col s12 ">
-                <h4><i class="medium material-icons red-text left">filter_3</i> Ajouter des points</h4>
+                <h4><i class="medium material-icons red-text left">filter_3</i><span data-i18n="page2titre3"></span>  </h4>
                 <div class="row">
                     <div class="col s8" style="text-align: justify;">
-                        <p>
-                            Trois élements sont essentiels pour ajouter des points sur votre carte: un <b>nom unique</b> (identifiant), une <b>longitude</b> et une <b>latitude</b>. Cependant
-                            vous avez la possibilité d'ajouter des informations suppémentaires à l'aide du bouton
+                        <p> <span data-i18n="page2text4a"></span>
+                             <b><span data-i18n="page2text4b"></span> </b>,  <b><span data-i18n="longitude"></span> </b> et une <b><span data-i18n="latitude"></span></b>.
+                            <span data-i18n="page2text4c"></span>
+
                             <a class="btn-small btn-floating black tooltipped modal-trigger" data-position="bottom" data-tooltip="Ajouter une colonne"> <i class="material-icons" style="transform:rotate(-90deg)">playlist_add</i></a>.
                         </p>
-                        <h5 style="color:#F44336">Comment trouver les coordonnées des points?</h5>
+                        <h5 style="color:#F44336"> <span data-i18n="page2text4d"></span></h5>
                         <p>
-                            De nombreux sites donnent les coordonnées géographiques grâce à l'adresse. Vous pouvez utiliser par exemple :<br> </p>
+                            <span data-i18n="page2text4e"></span>
+                            <br> </p>
                             <ul style="padding-left:40px;" >
                                 <li style="list-style-type:square">https://www.coordonnees-gps.fr/</li>
                                 <li style="list-style-type:square">https://gps-coordinates.org/</li>
@@ -205,17 +213,17 @@
 
         <div class="row">
             <div class="col s12 ">
-                <h4><i class="medium material-icons red-text left">filter_4</i> Visualiser et filtrer</h4>
+                <h4><i class="medium material-icons red-text left">filter_4</i> <span data-i18n="page2titre4"></span></h4>
                 <div class="row">
                     <div class="col s8" style="text-align: justify;">
                         <p>
-                        Une fois que vous avez rentré un certain nombre de points, vous pouvez visualiser votre carte en cliquant directement
-                        sur l'onglet <b style="color:#F44336">MA CARTE</b>.
+                            <span data-i18n="page2text5a"></span>
+                        <b style="color:#F44336"><span data-i18n="MymapofNav"></span></b>.
                         </p>
                         <p>
-                            Vous pouvez filter les resultats en fonction des colonnes que vous avez enregistré!
+                            <span data-i18n="page2text5b"></span>
                         </p>
-                        <img src="./resources/img/resultatstuto.png" style="max-width:750px;width:100%">
+                        <img src="./resources/img/exampleOfFilter.png" style="max-width:750px;width:100%">
 
                     </div>
                 </div>
@@ -224,25 +232,27 @@
 
         <div class="row">
             <div class="col s12 ">
-                <h4><i class="medium material-icons red-text left">filter_5</i> Enregistrer et recharger</h4>
+                <h4><i class="medium material-icons red-text left">filter_5</i><span data-i18n="page2titre5"></span> </h4>
                 <div class="row">
                     <div class="col s8" style="text-align: justify;">
-                        <p>Attention, nous ne stockons aucune donnée que vous enregistrez. Pour garder vos données,
-                            il faut <i><b>enregistrer vos points</b></i> en cliquant sur
+                        <p>
+                            <span data-i18n="page2text6a"></span>
+                            <i><b><span data-i18n="page2text6f"></span> </b></i><span data-i18n="page2text6b"></span>
                             <a class="btn-small btn-floating red tooltipped" data-position="bottom" data-tooltip="Enregistrer mon fichier carte">
-                                <i class="material-icons">save</i></a>. Un fichier <b>carte.csv</b> est alors généré.
+                                <i class="material-icons">save</i></a>. <span data-i18n="page2text6c"></span>
                         </p>
                         <p>
-                            Pour charger vos anciens points, utilisez le bouton
+                            <span data-i18n="page2text6d"></span>
+
                             <a class="btn-small btn-floating red tooltipped modal-trigger" data-position="bottom" data-tooltip="Charger un fichier carte" ><i class="material-icons">file_download</i></a>
-                            et selectionnez votre fichier <b>carte.csv</b>.
+                            <span data-i18n="page2text6e"></span>.
                         </p>
 
                     </div>
                 </div>
-                <h5 style="color:#F44336">Bravo! Vous enrichissez notre région en créant des cartes de bonnes adresses!</h5>
+                <h5 style="color:#F44336"> <span data-i18n="page2text6g"></span></h5>
                 <p>
-                    Si vous souhaitez que votre carte soit disponible sur ce site web, veuillez l'envoyer à l'adresse : <a>ma-carte-d-ile-de-france@outlook.com</a>.
+                    <span data-i18n="page2text6h"></span> <a>ma-carte-d-ile-de-france@outlook.com</a>.
                 </p>
 
             </div>
@@ -422,7 +432,7 @@
             Made with <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a><br>
             Images: <a class="grey-text text-lighten-3" href="https://pxhere.com/fr/photo/1366342">Fond</a>,
             <a class="grey-text text-lighten-3" href="https://fr.wikipedia.org/wiki/Coordonn%C3%A9es_g%C3%A9ographiques#/media/Fichier:Latitude_and_Longitude_of_the_Earth_fr.svg">Globe Longitude/Latitude</a>
-            <br>Données des laboratoires: <a class="grey-text text-lighten-3" href="https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-structures-recherche-publiques-actives/table/?disjunctive.numero_national_de_structure&disjunctive.tutelles
+            <br>Data: <a class="grey-text text-lighten-3" href="https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-structures-recherche-publiques-actives/table/?disjunctive.numero_national_de_structure&disjunctive.tutelles
 ">Structures de recherches publiques actives</a>,
             <a class="grey-text text-lighten-3" href="https://data.iledefrance.fr/explore/dataset/entites-constituant-les-domaines-dinteret-majeur-labellises/information">Domaines d'interêt majeur</a>
         </div>
@@ -471,12 +481,16 @@
 <!--  Scripts-->
 <!-- 3rd party Scripts-->
 <script src="materialize/js/materialize.js"></script>
+
+
 <script src="materialize/js/init.js"></script>
 <script crossorigin="" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
 <!-- Notre code -->
 <script src="scripts/map.js"></script>
+<script src="scripts/languages.js"></script>
+
 <script src="scripts/main.js"></script>
 <script src="scripts/filters.js"></script>
 <script src="scripts/boxes.js"></script>
