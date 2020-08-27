@@ -19,7 +19,7 @@ i18next.init({
           shortDescription:"Create your own personalised map of Ile-de-France, take the time to rediscover your region",
           buttonExample : "See example",
           subtitle1 : "Summary",
-          text1 : "is an online tool that allows you to record your points of interest in the region and the information associated with them. Once the map is created, a system of filters allows you to easily view your addresses.",
+          text1 : " is an online tool that allows you to record your points of interest in the region and the information associated with them. Once the map is created, a system of filters allows you to easily view your addresses.",
           subtitle2 : "How does it work?",
           text2 : "Find a detailed step-by-step tutorial, accessible to young and old alike, to create your personalised map of Ile de France.",
           subtitle3 : "Your maps!",
@@ -62,7 +62,19 @@ i18next.init({
             page2text6e : "and select your file",
             page2text6f : "save your map",
             page2text6g : "Well done! You enrich our region by creating maps of good addresses!",
-            page2text6h : "If you would like your map to be available on this website, please send it to "
+            page2text6h : "If you would like your map to be available on this website, please send it to ",
+            anda : " and a ",
+            a : "a",
+            context : "Context",
+            thetool : "The tool ",
+            thetoolb : "has been developed in the context of ",
+            thetoolc : "The Ile-de-France region organizes this competition for students in international mobility in order to provide them with financial assistance. This award is then intended for participants who have participated in highlighting the wealth of the Ile-de-France region",
+            by : "By:",
+            help: "Technical help",
+            creator: "Creator",
+            confidentialite : "Confidentiality: the information entered is only stored on your browser, we do not have access to it.",
+            listOfMaps : "Here is a nice list of maps, made by users, for your greatest pleasure. Browse through different types of projects, get inspired to make your own map or simply discover new places."
+
 
         }
        },
@@ -121,16 +133,91 @@ i18next.init({
             page2text6e : "et selectionnez votre fichier",
             page2text6f : "enregistrer votre carte",
             page2text6g : "Bravo! Vous enrichissez notre région en créant des cartes de bonnes adresses!",
-            page2text6h : "Si vous souhaitez que votre carte soit disponible sur ce site web, veuillez l'envoyer à l'adresse : "
+            page2text6h : "Si vous souhaitez que votre carte soit disponible sur ce site web, veuillez l'envoyer à l'adresse : ",
+            anda : " et une",
+            a : "une",
+            context : "Contexte du projet",
+            thetool : "L'outil ",
+            thetoolb : "a été développée dans le cadre des ",
+            thetoolc : "La région d'île de France organise ce concours destiné aux étudiants en mobilité internationale afin de leur apporter une aide financière. Cette récompense est alors destinée aux participants ayant participer à la mise en valeur de la richesse de la région d'île de France",
 
-
-
-
-
-
-
-
+            by : "Par:",
+            creator: "Créateur",
+            help: "Aide technique",
+            confidentialite : "Confidentialité: les informations rentrées sont uniquement stockées sur votre navigateur, nous n'y avons pas accès.",
+            listOfMaps : "Voici une belle liste de cartes, faites par des utilisateurs, pour votre plus grand plaisir. Parcourez différents types de projets, inspirez vous pour faire votre propre carte ou simplement découvrir de nouveaux lieux."
           }
+        },
+        ES : {
+            translation : {
+            title : "Mi mapa de Ile-de-France",
+           AccueilofNav: "Inicio",
+           TutorielofNav: "Tutorial",
+           MymapofNav : "MI MAPA",
+           MyplacesofNav : "MIS LUGARES",
+           DiscoverOfNav:"Descubrir los mapas",
+           shortDescription:"Cree su mapa personalizado de Ile-de-France, tómese su tiempo para redescubrir su región",
+           buttonExample: "Vea el ejemplo",
+           subtitle1 : "Presentación",
+           text1 : " es una herramienta en línea que permite registrar sus puntos de interés en la región y la información asociada a ellos. Una vez creado el mapa, un sistema de filtros le permite ver fácilmente sus direcciones.",
+           subtitle2: "¿Cómo funciona?",
+           text2 : "Encuentre un tutorial detallado paso a paso, accesible a jóvenes y mayores, para crear su mapa personalizado de Ile-de-France.",
+           subtitle3:"¡Tus mapas!",
+           text3 : "Envíenos los archivos de su tarjeta con su nombre de pila por correo electrónico para ver su tarjeta aparecer en el sitio. Así, enriquezcamos juntos las buenas direcciones de la región de Ile-de-France!",
+           page2Title: "Haz mi tarjeta en 5 pasos",
+           page2comment :"Publicamos las tarjetas que nos envías.",
+           page2titre1 : "Lo que necesitas saber antes de hacer tu tarjeta",
+           page2titre2 : "Crear un mapa vacío",
+           page2titre3 : "Agregar direcciones",
+           page2titre4 : "Ver y filtrar",
+           page2titre5 : "Guardar y recargar",
+           page2text1a : "Para posicionar los puntos en un mapa, usamos coordenadas geográficas que son la",
+           page2text1b : "y el",
+           page2text1c : "El",
+           page2text1d : "nos dice si un punto es OESTE o ESTE del globo en relación con el Meridiano de Greenwich. Este hito, situado en Inglaterra, define la longitud 0°. Los puntos al ESTE tienen una longitud entre 0° y 180° mientras que al OESTE, la longitud es negativa hasta -180°.",
+           page2text1e : "nos dice si un punto está al NORTE o al SUR del ecuador. El ecuador define la latitud 0°. La latitud está entre 0° y 180° para el NORTE y baja a -180° para el SUR.",
+           page2textexample : "Ejemplo:",
+           Majlatitude : "Latitud",
+           latitude : " atitud",
+           longitude :" longitud",
+           Majlongitude : "Longitud",
+           page2text2 : "Lisboa está situada al OESTE del Meridiano de Greenwich. Su longitud es entonces menos de 0°. De hecho, la longitud de Lisboa es de -9,13°. Lisboa está bien al NORTE del ecuador. Su latitud es entonces más alta que 0°. De hecho, la longitud de Lisboa es de 38,70°.",
+            page2text3a : "Cuando haces clic en el",
+            page2text3b : " se muestra un conjunto de puntos. Este es el ",
+            page2text3c : "Laboratoires d'île de France",
+            page2text3d : "Esta tarjeta es un ejemplo.",
+            page2text3e : "Para iniciar su tarjeta, vaya a la pestaña ",
+            page2text3f : "haga clic en el cubo de basura",
+            page2text3g : "para borrar los puntos existentes e iniciar el mapa!",
+            page2text4a : "Tres elementos son esenciales para añadir puntos a su mapa: un",
+            page2text4b : "nombre único",
+            page2text4c : "Sin embargo, tiene la posibilidad de añadir información adicional utilizando el botón",
+            page2text4d :"¿Cómo encuentro las coordenadas de los puntos?",
+            page2text4e : "Muchos sitios dan las coordenadas geográficas a través de la dirección. Puedes usar por ejemplo..:",
+            page2text5a : "Una vez que haya introducido un cierto número de puntos, puede ver su mapa haciendo clic directamente en la pestaña",
+            page2text5b : "¡Puedes filtrar los resultados según las columnas que has guardado!",
+            page2text6a : "Por favor, tenga en cuenta que no almacenamos ningún dato que usted registre. Para mantener sus datos, debe ",
+            page2text6b : "haciendo clic en",
+            page2text6c : "Entonces se genera un archivo.",
+            page2text6d : "Para cargar tus viejos puntos, usa el",
+            page2text6e : "y seleccione su archivo",
+            page2text6f : "registre su tarjeta",
+            page2text6g : "¡Bravo! ¡Enriquecen nuestra región creando mapas de buenas direcciones!",
+            page2text6h : "Si desea que su tarjeta esté disponible en este sitio web, por favor envíela a : ",
+            anda : " y un",
+            a : "un",
+            context : "Antecedentes del proyecto",
+            thetool : "La herramienta ",
+            thetoolb : "fue desarrollado como parte de la ",
+            thetoolc : "La región de Ile-de-France organiza este concurso para los estudiantes en movilidad internacional con el fin de proporcionarles una ayuda financiera. Este premio está destinado a los participantes que hayan contribuido a la valorización de la riqueza de la región de Ile-de-France.",
+
+            by : "Por:",
+            creator: "Creador",
+            help: "Soporte técnico",
+            confidentialite : "Confidencialidad: la información introducida sólo se almacena en su navegador, no tenemos acceso a ella.",
+            listOfMaps : "Aquí hay una bonita lista de tarjetas, hechas por los usuarios, para su mayor placer. Navega a través de diferentes tipos de proyectos, inspírate para hacer tu propio mapa o simplemente descubre nuevos lugares."
+
+            }
         }
 
     }
