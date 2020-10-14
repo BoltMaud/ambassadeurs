@@ -1,3 +1,7 @@
+
+.zindex{
+     z-index: 100;
+}
 /* redefine tabs style to fit the navbar */
 .tabs {
     height: 65px;

@@ -128,8 +128,10 @@ function goToTab(tab) {
     instance.select(tab);
 }
 
-function changeFileToLoad(name){
+function changeFileToLoad(name, value){
+    document.getElementById("maptitle").innerHTML=value;
     fileToLoad=name;
     changeName=true;
     goToTab("map");
 }
+
